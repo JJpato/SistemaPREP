@@ -5,14 +5,17 @@ package Controlador;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import Modelo.PartidosDAO;
+import Modelo.Partidos;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,7 +41,7 @@ public class Controlador extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Controlador</title>");            
+            out.println("<title>Servlet Controlador</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Controlador at " + request.getContextPath() + "</h1>");
@@ -59,7 +62,21 @@ public class Controlador extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        insertarPartido(request, response);
+    }
+
+    protected void insertarPartido(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String nombre = request.getParameter("nombre");
+        
+        PartidosDAO dao = new PartidosDAO();
+        Partidos partido = new Partidos(id, nombre);
+        
+        dao.insertar(partido);
+        
+        response.sendRedirect("RegistrarPartidos.jsp");
     }
 
     /**
