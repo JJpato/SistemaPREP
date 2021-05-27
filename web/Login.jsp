@@ -13,8 +13,8 @@
     </head>
     <body>
         <hr>Inicio de sesión<hr>
-        usuario: <input type="text"><br><br>
-        contraseña: <input type="text"><br><br>
+        usuario: <input type="text" name="Usu"><br><br>
+        contraseña: <input type="text" name="Pswd"><br><br>
         
         <hr>¿perdiste tu contraseña? <a href="">pulsa aqui</a></hr>
     </body>
