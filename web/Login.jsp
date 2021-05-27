@@ -12,8 +12,10 @@
         <title>Login</title>
     </head>
     <body>
-        usuario: <input type="text"><br>
-        contraseña: <input type="text"><br>
-    <h ref="" <h6>olvidaste tu contraseña</h6> </h>
+        <hr>Inicio de sesión<hr>
+        usuario: <input type="text"><br><br>
+        contraseña: <input type="text"><br><br>
+        
+        <hr>¿perdiste tu contraseña? <a href="">pulsa aqui</a></hr>
     </body>
 </html>
