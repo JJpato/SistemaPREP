@@ -11,9 +11,11 @@ package Modelo;
  */
 public class UsuariosDao {
     
-    String usu;
-    String pswd;
-    String Consulta_by_usuario="Select usuario from usuarios;";
-    String Consulta_by_pswd="Select paswordd from usuarios where usuario=usu;";
+    private static final String usu=null;
+    private static final String pswd=null;
+    private static final String Consulta_by_usuario="Select usuario from usuarios;";
+    private static final String Consulta_by_pswd="Select paswordd from usuarios where usuario=usu;";
+    
+    
     
 }
