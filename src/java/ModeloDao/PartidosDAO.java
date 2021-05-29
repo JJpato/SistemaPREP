@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import Interfaces.CRUD;
 import Modelo.Partidos;
+import Modelo.Usuario;
 
 public class PartidosDAO implements CRUD<Partidos> {
 
@@ -131,6 +132,11 @@ public class PartidosDAO implements CRUD<Partidos> {
             Conexion.cerrar(con);
         }
         return rows;
+    }
+
+    @Override
+    public int usuario(Usuario us) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
