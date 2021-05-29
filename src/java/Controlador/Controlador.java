@@ -5,7 +5,7 @@ package Controlador;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import Modelo.PartidosDAO;
+import ModeloDao.PartidosDAO;
 import Modelo.Partidos;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author JJ
  */
-@WebServlet(urlPatterns = {"/Controlador"})
+//@WebServlet(urlPatterns = {"/Controlador"})
 public class Controlador extends HttpServlet {
 
     /**
@@ -59,7 +59,7 @@ public class Controlador extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+    //@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -87,7 +87,7 @@ public class Controlador extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @Override
+    //@Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
@@ -98,7 +98,7 @@ public class Controlador extends HttpServlet {
      *
      * @return a String containing servlet description
      */
-    @Override
+    //@Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>

@@ -1,4 +1,4 @@
-package Modelo;
+package ModeloDao;
 
 import configuracion.Conexion;
 import java.sql.Connection;
@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import Interfaces.CRUD;
+import Modelo.Partidos;
 
 public class PartidosDAO implements CRUD<Partidos> {
 
