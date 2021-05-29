@@ -12,10 +12,14 @@
         <title>Login</title>
     </head>
     <body>
-    <hr><center>Inicio de sesión</center><hr>
-        usuario: <input type="text" name="Usu"><br><br>
+        <form action="/Controlador" method="post">
+    <hr><center>Inicio de sesión<hr>
+        usuario:    <input type="text" name="Usu"><br><br>
         contraseña: <input type="text" name="Pswd"><br><br>
+        <input type="submit" value="Iniciar sesión">
         <hr>¿No estas registrado? <a href="">pulsa aqui</a></hr><br>
         <hr>¿perdiste tu contraseña? <a href="">pulsa aqui</a></hr>
+        </center>
+        </form>
     </body>
 </html>

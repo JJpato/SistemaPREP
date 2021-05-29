@@ -7,6 +7,8 @@ package Controlador;
  */
 import ModeloDao.PartidosDAO;
 import Modelo.Partidos;
+import Modelo.Usuario;
+import Modelo.UsuariosDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -21,7 +23,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author JJ
  */
-//@WebServlet(urlPatterns = {"/Controlador"})
+@WebServlet(urlPatterns = {"/Controlador"})
 public class Controlador extends HttpServlet {
 
     /**
@@ -91,6 +93,12 @@ public class Controlador extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        String Us=request.getParameter("Usu");
+        String Ps=request.getParameter("Pswd");
+        Usuario us = new Usuario();
+        UsuariosDao usD = new UsuariosDao();
+        usD.log(Us,Ps);
+        
     }
 
     /**

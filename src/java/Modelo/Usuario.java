@@ -6,6 +6,8 @@ public class Usuario {
     String nombre;
     String Apellido;
     String edad;
+    String Usu;
+    String pwsd;
 
     public int getIdUsu() {
         return idUsu;
@@ -38,4 +40,22 @@ public class Usuario {
     public void setEdad(String edad) {
         this.edad = edad;
     }
+
+    public String getUsu() {
+        return Usu;
+    }
+
+    public void setUsu(String Usu) {
+        this.Usu = Usu;
+    }
+
+    public String getPwsd() {
+        return pwsd;
+    }
+
+    public void setPwsd(String pwsd) {
+        this.pwsd = pwsd;
+    }
+
+    
 }
