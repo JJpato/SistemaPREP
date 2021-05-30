@@ -8,7 +8,7 @@ package Controlador;
 import ModeloDao.PartidosDAO;
 import Modelo.Partidos;
 import Modelo.Usuario;
-import Modelo.UsuariosDao;
+import ModeloDao.UsuariosDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -98,6 +98,9 @@ public class Controlador extends HttpServlet {
         Usuario us = new Usuario();
         UsuariosDao usD = new UsuariosDao();
         usD.log(Us,Ps);
+        if(usD.access==true){
+            response.sendRedirect("");
+        }
         
     }
 

@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package ModeloDao;
 
 import configuracion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Interfaces.CRUD;
+import Modelo.Usuario;
 import java.util.List;
 
 /**
@@ -22,8 +23,9 @@ public class UsuariosDao implements CRUD{
     private static final String pswd=null;
     private static final String Consulta_by_usuario="Select usuario from usuarios where usu=usuario & pswd=paswordd ;";
     private static final String Consulta_by_pswd="Select paswordd from usuarios where usuario=usu;";
+    public boolean access=false;
     
-    public Usuario log(String U, String P){
+    public boolean log(String U, String P){
     Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -33,13 +35,17 @@ public class UsuariosDao implements CRUD{
             stmt = con.prepareStatement(Consulta_by_usuario);
             rs = stmt.executeQuery();
             while(rs.next()){
-            
+                if(U==rs.getString("usuario") && P==rs.getString("paswordd")){
+                
+                    access=true;
+                    break;
+                }
             }
             
         }
         catch(Exception e){
         }
-        return null;
+        return access;
     }
 
     @Override
@@ -71,5 +77,6 @@ public class UsuariosDao implements CRUD{
     public int usuario(Usuario us) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
     
 }
