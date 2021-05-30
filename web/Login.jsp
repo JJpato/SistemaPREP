@@ -12,7 +12,7 @@
         <title>Login</title>
     </head>
     <body>
-        <form action="/Controlador" method="post">
+        <form action="http://localhost:8080/SistemaPREP/Controlador" method="post">
     <hr><center>Inicio de sesión<hr>
         usuario:    <input type="text" name="Usu"><br><br>
         contraseña: <input type="text" name="Pswd"><br><br>

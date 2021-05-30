@@ -92,14 +92,17 @@ public class Controlador extends HttpServlet {
     //@Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        // processRequest(request, response);
         String Us=request.getParameter("Usu");
         String Ps=request.getParameter("Pswd");
         Usuario us = new Usuario();
         UsuariosDao usD = new UsuariosDao();
         usD.log(Us,Ps);
         if(usD.access==true){
-            response.sendRedirect("");
+            response.sendRedirect("http://localhost:8080/SistemaPREP/pruebaL.html");
+        }
+        else{
+        response.sendRedirect("http://localhost:8080/SistemaPREP/prueba.html");
         }
         
     }

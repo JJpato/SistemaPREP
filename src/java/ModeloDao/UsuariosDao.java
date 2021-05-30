@@ -21,8 +21,7 @@ public class UsuariosDao implements CRUD{
     
     private static final String usu=null;
     private static final String pswd=null;
-    private static final String Consulta_by_usuario="Select usuario from usuarios where usu=usuario & pswd=paswordd ;";
-    private static final String Consulta_by_pswd="Select paswordd from usuarios where usuario=usu;";
+    private static final String Consulta="Select * from usuarios;";
     public boolean access=false;
     
     public boolean log(String U, String P){
@@ -32,11 +31,11 @@ public class UsuariosDao implements CRUD{
         
         try{
         con = Conexion.getConexion();
-            stmt = con.prepareStatement(Consulta_by_usuario);
+            stmt = con.prepareStatement(Consulta);
+            rs=stmt.executeQuery(Consulta);
             rs = stmt.executeQuery();
             while(rs.next()){
-                if(U==rs.getString("usuario") && P==rs.getString("paswordd")){
-                
+                if(U==rs.getString(5) && P==rs.getString(6)){               
                     access=true;
                     break;
                 }
