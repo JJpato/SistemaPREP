@@ -62,6 +62,7 @@ public class Controlador extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     //@Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -90,20 +91,11 @@ public class Controlador extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     //@Override
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // processRequest(request, response);
-        String Us=request.getParameter("Usu");
-        String Ps=request.getParameter("Pswd");
-        Usuario us = new Usuario();
-        UsuariosDao usD = new UsuariosDao();
-        usD.log(Us,Ps);
-        if(usD.access==true){
-            response.sendRedirect("http://localhost:8080/SistemaPREP/pruebaL.html");
-        }
-        else{
-        response.sendRedirect("http://localhost:8080/SistemaPREP/prueba.html");
-        }
+        processRequest(request, response);
+       
         
     }
 
@@ -113,6 +105,7 @@ public class Controlador extends HttpServlet {
      * @return a String containing servlet description
      */
     //@Override
+    @Override
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
