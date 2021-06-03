@@ -22,29 +22,31 @@ public class UsuariosDao implements CRUD{
     
     private static final String usu=null;
     private static final String pswd=null;
-    private static final String Consulta="Select *from usuarios";
+    //private static final String Consulta="Select *from usuarios where ";
     public boolean access;
     
-    public boolean log(String U, String P){
+    public String log(String U, String P){
     Connection con = null;
         PreparedStatement pst=null;
         ResultSet rs = null;
+        String usu=null;
+        String Consulta="Select *from usuarios where usuario = "+U+" and paswordd = "+P;
+        String n=null;
         
         try{
         con = Conexion.getConexion();
             pst=con.prepareStatement(Consulta);
             rs=pst.executeQuery();
             while(rs.next()){
-                if(U==rs.getString(5) && P==rs.getString(6)){               
-                    access=true;
-                    break;
-                }
+                usu=rs.getString(5);
+                n=rs.getString(2);
+                access=true;
             }
             
         }
         catch(Exception e){
         }
-        return access;
+        return n;
     }
 
     @Override

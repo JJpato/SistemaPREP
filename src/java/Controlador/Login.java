@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ModeloDao.UsuariosDao;
+import javax.servlet.RequestDispatcher;
 
 /**
  *
@@ -34,16 +35,26 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+             String us;
+              String ps;
+              String a;
+              RequestDispatcher rd=null;
+            if(request.getParameter("btE")!= null){
+                us= request.getParameter("Usu");
+                ps= request.getParameter("Pswd");
+                UsuariosDao UDAO = new UsuariosDao();
+                a=UDAO.log(us, ps);
+                if(UDAO.access){
+                response.sendRedirect("http://localhost:8080/SistemaPREP/pruebaL.html");
+                }
+                //request.setAttribute("Usuario", us);
+                //request.setAttribute("Acceso", a);
+                //rd=request.getRequestDispatcher("http://localhost:8080/SistemaPREP/Login.jsp");
+                
+                //out.print(a);
+            }
+            //rd.forward(request, response);
+            
         }
     }
 
@@ -73,19 +84,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-       // processRequest(request, response);
-        String us= request.getParameter("Usu");
-        String ps= request.getParameter("Pswd");
-        
-        UsuariosDao UDAO = new UsuariosDao();
-        UDAO.log(us, ps);
-        if(UDAO.access==true){
-            response.sendRedirect("http://localhost:8080/SistemaPREP/pruebaL.html");
-        }
-        else{
-        response.sendRedirect("http://localhost:8080/SistemaPREP/prueba.html");
-        }
+       
     }
 
     /**
