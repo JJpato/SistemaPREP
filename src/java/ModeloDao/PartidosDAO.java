@@ -1,5 +1,8 @@
 package ModeloDao;
 
+import Interfaces.CRUD;
+import Modelo.Partidos;
+import Modelo.Usuario;
 import configuracion.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,9 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import Interfaces.CRUD;
-import Modelo.Partidos;
-import Modelo.Usuario;
 
 public class PartidosDAO implements CRUD<Partidos> {
 

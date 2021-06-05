@@ -3,7 +3,12 @@ package Modelo;
 public class Partidos {
     private int idPartido;
     private String nombrePartido;
-
+    
+    public Partidos(int idPartido, String nombrePartido) {
+        this.idPartido = idPartido;
+        this.nombrePartido = nombrePartido;
+    }
+    
     public int getIdPartido() {
         return idPartido;
     }
@@ -17,11 +22,6 @@ public class Partidos {
     }
 
     public void setNombrePartido(String nombrePartido) {
-        this.nombrePartido = nombrePartido;
-    }
-
-    public Partidos(int idPartido, String nombrePartido) {
-        this.idPartido = idPartido;
         this.nombrePartido = nombrePartido;
     }
 }

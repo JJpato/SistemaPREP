@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <a href="#" class="btn btn-block">
+                <a href="Inicio.jsp" class="btn btn-block">
                     <i class="fas fa-arrow-left"></i> Regresar al inicio
                 </a>
             </div>
