@@ -61,25 +61,26 @@ public class Controlador extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    //@Override
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        insertarPartido(request, response);
-    }
+        String pagina = request.getParameter("pagina");
 
-    protected void insertarPartido(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        String nombre = request.getParameter("nombre");
-        
-        PartidosDAO dao = new PartidosDAO();
-        Partidos partido = new Partidos(id, nombre);
-        
-        dao.insertar(partido);
-        
-        response.sendRedirect("RegistrarPartidos.jsp");
+        if (pagina != null) {
+            switch (pagina) {
+                case "Partidos":
+                    Partidos(request, response);
+                    break;
+                case "Usuarios":
+                    //Usuarios(request, response);
+                    break;
+                default:
+                    response.sendRedirect("Inicio.jsp");
+            }
+        } else {
+            response.sendRedirect("Inicio.jsp");
+        }
     }
 
     /**
@@ -90,13 +91,125 @@ public class Controlador extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    //@Override
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-       
-        
+
+        String pagina = request.getParameter("pagina");
+
+        if (pagina != null) {
+            switch (pagina) {
+                case "Partidos":
+                    Partidos(request, response);
+                    break;
+                case "Usuarios":
+                    //Usuarios(request, response);
+                    break;
+                default:
+                    response.sendRedirect("Inicio.jsp");
+            }
+        } else {
+            response.sendRedirect("Inicio.jsp");
+        }
+    }
+
+    protected void Partidos(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String accion = request.getParameter("accion");
+
+        if (accion != null) {
+            switch (accion) {
+                case "insertar":
+                    insertarPartido(request, response);
+                    break;
+                case "editar":
+                    editarPartido(request, response);
+                    break;
+                case "modificar":
+                    actualizarPartido(request, response);
+                    break;
+                case "eliminar":
+                    eliminarPartidos(request, response);
+                    break;
+                default:
+                    listarPartidos(request, response);
+            }
+        } else {
+            listarPartidos(request, response);
+        }
+    }
+
+    protected void listarPartidos(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
+        PartidosDAO dao = new PartidosDAO();
+
+        List<Partidos> partidos = dao.listar();
+        sesion.setAttribute("partidos", partidos);
+
+        response.sendRedirect("RegistrarPartido.jsp");
+    }
+
+    private void insertarPartido(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String nc = request.getParameter("id");
+        String nombre = request.getParameter("nombre");
+
+        Partidos partido = new Partidos(Integer.parseInt(nc), nombre);
+
+        PartidosDAO dao = new PartidosDAO();
+
+        dao.insertar(partido);
+
+        //redirigimos
+        listarPartidos(request, response);
+    }
+
+    private void editarPartido(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        //recuperra el id
+        int id = Integer.parseInt(request.getParameter("nc"));
+
+        //recuperar datos de la base de datos
+        PartidosDAO dao = new PartidosDAO();
+        Partidos partido = dao.encontrar(id);
+
+        request.setAttribute("partido", partido);
+        String jspEditar = "/WEB-INF/paginas/editar/editarPartido.jsp";
+        request.getRequestDispatcher(jspEditar).forward(request, response);
+    }
+
+    private void actualizarPartido(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String nc = request.getParameter("nc");
+        String nombre = request.getParameter("nombre");
+
+        Partidos partido = new Partidos(Integer.parseInt(nc), nombre);
+
+        PartidosDAO dao = new PartidosDAO();
+
+        int registrosModificados = dao.actualizar(partido);
+
+        System.out.println("registros modificados = " + registrosModificados);
+
+        //redirigimos
+        listarPartidos(request, response);
+    }
+
+    private void eliminarPartidos(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        //recuperra el id 
+        int id = Integer.parseInt(request.getParameter("nc"));
+
+        PartidosDAO dao = new PartidosDAO();
+        int registrosModificados = dao.eliminar(id);
+
+        System.out.println("registros eliminados = " + registrosModificados);
+
+        listarPartidos(request, response);
     }
 
     /**
@@ -104,7 +217,6 @@ public class Controlador extends HttpServlet {
      *
      * @return a String containing servlet description
      */
-    //@Override
     @Override
     public String getServletInfo() {
         return "Short description";
