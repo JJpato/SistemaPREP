@@ -12,6 +12,7 @@
         <title>Login</title>
     </head>
     <body>
+        <div>
         <form action="http://localhost:8080/SistemaPREP/Login">
     <hr><center>Inicio de sesión<hr>
         usuario:    <input type="text" name="Usu" required value><br><br>
@@ -21,6 +22,8 @@
         <hr>¿perdiste tu contraseña? <a href="">pulsa aqui</a></hr>
         </center>
         </form>
+            
+            
         
     </body>
 </html>

@@ -30,23 +30,20 @@ public class UsuariosDao implements CRUD{
         PreparedStatement pst=null;
         ResultSet rs = null;
         String usu=null;
-        String Consulta="Select *from usuarios where usuario = "+U+" and paswordd = "+P;
-        String n=null;
+        String Consulta="Select *from usuarios where usuario = "+U;
+        String no=null;
         
         try{
         con = Conexion.getConexion();
             pst=con.prepareStatement(Consulta);
             rs=pst.executeQuery();
             while(rs.next()){
-                usu=rs.getString(5);
-                n=rs.getString(2);
-                access=true;
-            }
-            
+               no=rs.getString(1);
+            }   
         }
         catch(Exception e){
         }
-        return n;
+        return no;
     }
 
     @Override

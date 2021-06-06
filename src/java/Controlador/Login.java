@@ -39,14 +39,19 @@ public class Login extends HttpServlet {
               String ps;
               String a;
               RequestDispatcher rd=null;
-            if(request.getParameter("btE")!= null){
+           // if(request.getParameter("btE")!= null){
                 us= request.getParameter("Usu");
                 ps= request.getParameter("Pswd");
                 UsuariosDao UDAO = new UsuariosDao();
                 a=UDAO.log(us, ps);
+                
                 if(UDAO.access){
-                response.sendRedirect("http://localhost:8080/SistemaPREP/pruebaL.html");
+                //response.sendRedirect("http://localhost:8080/SistemaPREP/pruebaL.html");
+                }else{//response.sendRedirect("http://localhost:8080/SistemaPREP/prueba.html");
+                    
                 }
+            out.print(a);
+           // }
                 //request.setAttribute("Usuario", us);
                 //request.setAttribute("Acceso", a);
                 //rd=request.getRequestDispatcher("http://localhost:8080/SistemaPREP/Login.jsp");
@@ -56,7 +61,7 @@ public class Login extends HttpServlet {
             //rd.forward(request, response);
             
         }
-    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
