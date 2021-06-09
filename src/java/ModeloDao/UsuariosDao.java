@@ -30,7 +30,7 @@ public class UsuariosDao implements CRUD{
         PreparedStatement pst=null;
         ResultSet rs = null;
         String usu=null;
-        String Consulta="Select * from usuarios where usuario = "+U+" and paswordd = "+P;
+        String Consulta="Select * from usuarios where usuario = '"+U+"' and paswordd = '"+P+"'";
         String no=null;
         
         try{
