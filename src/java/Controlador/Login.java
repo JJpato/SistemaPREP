@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import Modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,11 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import ModeloDao.UsuariosDao;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author luism
- */
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class Login extends HttpServlet {
 
@@ -35,29 +33,7 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-             String us;
-              String ps;
-              String a;
-              RequestDispatcher rd=null;
-           // if(request.getParameter("btE")!= null){
-                us= request.getParameter("Usu");
-                ps= request.getParameter("Pswd");
-                UsuariosDao UDAO = new UsuariosDao();
-                a=UDAO.log(us, ps);
-                
-                if(UDAO.access){
-                //response.sendRedirect("http://localhost:8080/SistemaPREP/pruebaL.html");
-                }else{//response.sendRedirect("http://localhost:8080/SistemaPREP/prueba.html");
-                    
-                }
-            out.print(a);
-           // }
-                //request.setAttribute("Usuario", us);
-                //request.setAttribute("Acceso", a);
-                //rd=request.getRequestDispatcher("http://localhost:8080/SistemaPREP/Login.jsp");
-                
-                //out.print(a);
-            }
+        }
             //rd.forward(request, response);
             
         }
@@ -89,14 +65,28 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-    }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
+        PrintWriter out = response.getWriter();
+        
+        String user;
+              String ps;
+              String a;
+           // if(request.getParameter("btE")!= null){
+                user= request.getParameter("Usu");
+                ps= request.getParameter("Pswd");
+                UsuariosDao UDAO = new UsuariosDao();
+                a=UDAO.log(user, ps);
+                out.print(a);
+                if(UDAO.access){
+             // response.sendRedirect("pruebaL.html");
+               Usuario usu = new Usuario(user,ps);
+                 HttpSession session = request.getSession();
+                 session.setAttribute("usuario", usu);   
+                 request.getRequestDispatcher("menu.jsp").forward(request, response);
+                }
+                else{//response.sendRedirect("http://localhost:8080/SistemaPREP/Login.jsp");
+                    
+                }          
+    }   
     @Override
     public String getServletInfo() {
         return "Short description";

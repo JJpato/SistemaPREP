@@ -20,8 +20,8 @@ import java.util.List;
  */
 public class UsuariosDao implements CRUD{
     
-    private static final String usu=null;
-    private static final String pswd=null;
+    private static  String usu=null;
+    private static  String pswd=null;
     //private static final String Consulta="Select *from usuarios where ";
     public boolean access;
     
@@ -30,7 +30,7 @@ public class UsuariosDao implements CRUD{
         PreparedStatement pst=null;
         ResultSet rs = null;
         String usu=null;
-        String Consulta="Select *from usuarios where usuario = "+U;
+        String Consulta="Select * from usuarios where usuario = "+U+" and paswordd = "+P;
         String no=null;
         
         try{
@@ -38,7 +38,13 @@ public class UsuariosDao implements CRUD{
             pst=con.prepareStatement(Consulta);
             rs=pst.executeQuery();
             while(rs.next()){
-               no=rs.getString(1);
+                usu=rs.getString(5);
+                pswd=rs.getString(6);
+                if(usu.equalsIgnoreCase(U)&& pswd.equalsIgnoreCase(P)){
+                access=true;
+                }
+                no=rs.getString(2);
+                
             }   
         }
         catch(Exception e){

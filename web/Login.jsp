@@ -13,7 +13,7 @@
     </head>
     <body>
         <div>
-        <form action="http://localhost:8080/SistemaPREP/Login">
+        <form action="http://localhost:8080/SistemaPREP/Login" method="post">
     <hr><center>Inicio de sesión<hr>
         usuario:    <input type="text" name="Usu" required value><br><br>
         contraseña: <input type="password" name="Pswd" required value><br><br>

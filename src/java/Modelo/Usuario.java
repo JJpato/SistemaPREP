@@ -7,6 +7,11 @@ public class Usuario {
     String Apellido;
     String edad;
     String Usu;
+
+    public Usuario(String Usu, String pwsd) {
+        this.Usu = Usu;
+        this.pwsd = pwsd;
+    }
     String pwsd;
 
     public int getIdUsu() {
