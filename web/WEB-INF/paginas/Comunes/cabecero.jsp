@@ -3,9 +3,11 @@
     <div class="container">            
         <div class="row">
             <div class="col-md-6">
+                <a href="Inicio.jsp" class="nav-item nav-link text-white">
                 <h1>
                     <i class="fas fa-child"></i> Sistema PREP
                 </h1>
+                </a>
             </div>
         </div>
     </div>

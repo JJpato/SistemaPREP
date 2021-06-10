@@ -25,7 +25,10 @@
                                 <div class="navbar-nav">
                                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/Controlador?pagina=Partidos"><h4>
                                             <i class="fas fa-home"></i>Registrar Partido</h4></a>
-                                 </div>
+                                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/Controlador?pagina=Votos">
+                                        <h4>Votos</h4>
+                                    </a>
+                                </div>
                             </div>
                         </nav>
                     </div>

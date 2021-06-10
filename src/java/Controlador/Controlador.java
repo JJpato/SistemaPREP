@@ -72,8 +72,8 @@ public class Controlador extends HttpServlet {
                 case "Partidos":
                     Partidos(request, response);
                     break;
-                case "Usuarios":
-                    //Usuarios(request, response);
+                case "Votos":
+                    votos(request, response);
                     break;
                 default:
                     response.sendRedirect("Inicio.jsp");
@@ -102,8 +102,8 @@ public class Controlador extends HttpServlet {
                 case "Partidos":
                     Partidos(request, response);
                     break;
-                case "Usuarios":
-                    //Usuarios(request, response);
+                case "Votos":
+                    votos(request, response);
                     break;
                 default:
                     response.sendRedirect("Inicio.jsp");
@@ -211,7 +211,16 @@ public class Controlador extends HttpServlet {
 
         listarPartidos(request, response);
     }
+    protected void votos(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
+        PartidosDAO dao = new PartidosDAO();
 
+        List<Partidos> partidos = dao.listar();
+        sesion.setAttribute("partidos", partidos);
+
+        response.sendRedirect("Votos.jsp");
+    }
     /**
      * Returns a short description of the servlet.
      *
