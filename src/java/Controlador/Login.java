@@ -81,9 +81,9 @@ public class Login extends HttpServlet {
                Usuario usu = new Usuario(user,ps);
                  HttpSession session = request.getSession();
                  session.setAttribute("usuario", usu);   
-                 request.getRequestDispatcher("menu.jsp").forward(request, response);
+                 request.getRequestDispatcher("Inicio.jsp").forward(request, response);
                 }
-                else{//response.sendRedirect("http://localhost:8080/SistemaPREP/Login.jsp");
+                else{response.sendRedirect("http://localhost:8080/SistemaPREP/Login.jsp");
                     
                 }          
     }   
