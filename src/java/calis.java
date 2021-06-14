@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import Controlador.EnviarCorreo;
 import Modelo.Partidos;
 import ModeloDao.PartidosDAO;
 import java.io.IOException;
@@ -36,10 +37,14 @@ public class calis extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        PartidosDAO dao = new PartidosDAO();
-
-        List<Partidos> partidos = dao.listar();
-
+        //Declarar variable EnviarCorreo
+        EnviarCorreo correo = new EnviarCorreo();
+        //declarar el mensaje a enviar
+        String mensaje = "Hola,\n esta es otra prueba";
+        //Enviar correo, recibe como parametros, el destino, encabezado y el mensaje en si. 
+        //Devuelve el estado del mensaje (Enviado o fallido), pero no funciona muy bien
+        String estado = correo.Enviar("josejuangallardocabrera@gmail.com", "CalisEnvios", mensaje);
+        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
@@ -48,9 +53,10 @@ public class calis extends HttpServlet {
             out.println("<title>Servlet calis</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>" + partidos.get(0).getNombrePartido() + "</h1>");
+            out.println("<h1>" + estado + "</h1>");
             out.println("</body>");
             out.println("</html>");
+            
         }
     }
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
