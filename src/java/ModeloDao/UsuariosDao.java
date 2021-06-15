@@ -26,7 +26,7 @@ public class UsuariosDao implements CRUD{
     public boolean access;
     
     public String log(String U, String P){
-    Connection con = null;
+        Connection con = null;
         PreparedStatement pst=null;
         ResultSet rs = null;
         String usu=null;
@@ -34,7 +34,7 @@ public class UsuariosDao implements CRUD{
         String no=null;
         
         try{
-        con = Conexion.getConexion();
+            con = Conexion.getConexion();
             pst=con.prepareStatement(Consulta);
             rs=pst.executeQuery();
             while(rs.next()){
@@ -45,11 +45,26 @@ public class UsuariosDao implements CRUD{
                 }
                 no=rs.getString(2);
                 
-            }   
+            }
         }
         catch(Exception e){
         }
+        finally{
+            Conexion.cerrar(pst);
+            Conexion.cerrar(con);
+            Conexion.cerrar(rs);
+        }
         return no;
+    }
+    
+    public String crearUsu(String nombre,String Apellidos,String correo,String Contra, String Domicilio,String edad){
+        Connection con = null;
+        PreparedStatement pst=null;
+        ResultSet rs = null;
+        con = Conexion.getConexion();
+        //pst=con.prepareStatement("Consulta");
+        //rs=pst.executeQuery();
+        return "";
     }
 
     @Override

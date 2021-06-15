@@ -9,9 +9,23 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Registro de usuarios</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+     <center>
+        <h1>nuevo usuario</h1>
+    
+        <div>
+        <form action="http://localhost:8080/SistemaPREP/RegistrarUsarios" method="post">
+            <input type="text" placeholder="Nombre"><br><br>
+            <input type="text" placeholder="Apellidos"><br><br>
+            <input type="text" placeholder="Correo Electronico"><br><br>
+            <input type="text" placeholder="Contraseña"><br><br>
+            <input type="text" placeholder="Domicilio"><br><br>
+            <input type="text" placeholder="Edad"><br><br>
+            <input type="submit" value="registrar">
+        </form>
+        </div>
+    </center>
     </body>
 </html>
