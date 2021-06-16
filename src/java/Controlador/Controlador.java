@@ -155,8 +155,9 @@ public class Controlador extends HttpServlet {
 
         String nc = request.getParameter("id");
         String nombre = request.getParameter("nombre");
+        String alcance = request.getParameter("alcance");
 
-        Partidos partido = new Partidos(Integer.parseInt(nc), nombre);
+        Partidos partido = new Partidos(Integer.parseInt(nc), nombre, alcance);
 
         PartidosDAO dao = new PartidosDAO();
 
@@ -185,8 +186,9 @@ public class Controlador extends HttpServlet {
 
         String nc = request.getParameter("nc");
         String nombre = request.getParameter("nombre");
-
-        Partidos partido = new Partidos(Integer.parseInt(nc), nombre);
+        String alcance = request.getParameter("alcance");
+        
+        Partidos partido = new Partidos(Integer.parseInt(nc), nombre, alcance);
 
         PartidosDAO dao = new PartidosDAO();
 

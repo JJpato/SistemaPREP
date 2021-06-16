@@ -5,7 +5,7 @@
             <div class="col-md-6">
                 <a href="Inicio.jsp" class="nav-item nav-link text-white">
                 <h1>
-                    <i class="fas fa-child"></i> Sistema PREP
+                    <i class="fas fa-balance-scale"></i></i> Sistema PREP
                 </h1>
                 </a>
             </div>

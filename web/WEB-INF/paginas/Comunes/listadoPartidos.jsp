@@ -19,7 +19,8 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nombre</th>
-                                <th>Descripcion</th>            
+                                <th>Alcance</th> 
+                                <th>Acciones</th> 
                             </tr>
                         </thead>
                         <tbody>
@@ -28,6 +29,7 @@
                                 <tr>
                                     <td>${partidos.getIdPartido()}</td>
                                     <td>${partidos.getNombrePartido()}</td> 
+                                    <td>${partidos.getAlcance()}</td> 
                                     <td>
                                         <a href="${pageContext.request.contextPath}/Controlador?pagina=Partidos&accion=editar&nc=${partidos.getIdPartido()}"
                                            class="btn btn-primary btn-block" >
@@ -52,7 +54,7 @@
 <div class="modal fade" id="agregarPartidoModal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header bg-info text-white">
+            <div class="modal-header bg-secondary text-white">
                 <h5 class="modal-title">Agregar Partido</h5> 
                 <button class="close" data-dismiss="modal">
                     <span>&times;</span>
@@ -78,7 +80,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btm-primary bg-info text-white" type="submit">Guardar</button>
+                    <button class="btn btm-primary bg-primary text-white" type="submit">Guardar</button>
                 </div>
             </form>
         </div>

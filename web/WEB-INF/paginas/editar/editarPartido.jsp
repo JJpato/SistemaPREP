@@ -38,6 +38,13 @@
                                         <label for="nombre">Nombre</label>
                                         <input type="text" class="form-control" name="nombre" required value="${partido.getNombrePartido()}">
                                     </div>
+                                    <div class="form-group">
+                                        <label for="alc">Alcance</label><br>
+                                        <select class="form-control bg-light" name="alcance" id="alc">
+                                            <option>Nacional</option>
+                                            <option>Local</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
