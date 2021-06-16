@@ -13,12 +13,12 @@ import java.util.List;
 
 public class PartidosDAO implements CRUD<Partidos> {
 
-    private static final String SQL_SELECT = "SELECT * FROM partido_politico";
-    private static final String SQL_SELECT_BY_NC = "SELECT * FROM partido_politico WHERE id_partido_politico = ?";
-    private static final String SQL_INSERT = "INSERT INTO partido_politico VALUES (?, ?)";
-    private static final String SQL_UPDATE = "UPDATE partido_politico SET id_partido_politico = ? , nombrePartido = ?"
-            + "WHERE id_partido_politico = ?";
-    private static final String SQL_DELETE = "DELETE FROM partido_politico WHERE id_partido_politico = ?";
+    private static final String SQL_SELECT = "SELECT * FROM partidos";
+    private static final String SQL_SELECT_BY_NC = "SELECT * FROM partidos WHERE id_partido = ?";
+    private static final String SQL_INSERT = "INSERT INTO partidos VALUES (?, ?, ?)";
+    private static final String SQL_UPDATE = "UPDATE partidos SET id_partido = ? , nombre_partido = ?, alcance = ?"
+            + "WHERE id_partido = ?";
+    private static final String SQL_DELETE = "DELETE FROM partidos WHERE id_partido = ?";
 
     @Override
     public List listar() {
@@ -35,7 +35,7 @@ public class PartidosDAO implements CRUD<Partidos> {
             Partidos partido = null;
 
             while (rs.next()) {
-                partido = new Partidos(rs.getInt(1), rs.getString(2));
+                partido = new Partidos(rs.getInt(1), rs.getString(2), rs.getString(3));
                 partidos.add(partido);
             }
         } catch (SQLException ex) {
@@ -62,7 +62,7 @@ public class PartidosDAO implements CRUD<Partidos> {
 
             rs.absolute(1);
 
-            partido = new Partidos(rs.getInt(1), rs.getString(2));
+            partido = new Partidos(rs.getInt(1), rs.getString(2), rs.getString(3));
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         } finally {
@@ -83,6 +83,7 @@ public class PartidosDAO implements CRUD<Partidos> {
             stmt = con.prepareStatement(SQL_INSERT);
             stmt.setInt(1, partido.getIdPartido());
             stmt.setString(2, partido.getNombrePartido());
+            stmt.setString(3, partido.getAlcance());
 
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -104,7 +105,8 @@ public class PartidosDAO implements CRUD<Partidos> {
             stmt = con.prepareStatement(SQL_UPDATE);
             stmt.setInt(1, partido.getIdPartido());
             stmt.setString(2, partido.getNombrePartido());
-            stmt.setInt(3, partido.getIdPartido());
+            stmt.setString(3, partido.getAlcance());
+            stmt.setInt(4, partido.getIdPartido());
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
