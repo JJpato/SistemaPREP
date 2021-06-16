@@ -5,6 +5,7 @@
  */
 package Controlador;
 
+import ModeloDao.UsuariosDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -71,8 +72,15 @@ public class RegistrarUsarios extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellidos");
+        String edad = request.getParameter("edad");
+        String correo = request.getParameter("email");
+        String contrasena = request.getParameter("psw");
         
-        
+        UsuariosDao us = new UsuariosDao();
+        us.crearUsu(nombre, apellido, correo, contrasena , edad);
+        response.sendRedirect("Login.jsp");
     }
 
     /**

@@ -57,13 +57,21 @@ public class UsuariosDao implements CRUD{
         return no;
     }
     
-    public String crearUsu(String nombre,String Apellidos,String correo,String Contra, String Domicilio,String edad){
+    public String crearUsu(String nombre,String Apellido,String correo,String Contra,String edad){
         Connection con = null;
         PreparedStatement pst=null;
-        ResultSet rs = null;
+        String Insertar="Insert into usuarios values (13,'"+nombre+"','"+Apellido+"','"+edad+"','"+correo+"','"+Contra+"' )";
+        try{
         con = Conexion.getConexion();
-        //pst=con.prepareStatement("Consulta");
-        //rs=pst.executeQuery();
+        pst=con.prepareStatement(Insertar);
+        pst.executeUpdate();
+        }
+        catch(Exception e){
+        }
+        finally{
+            Conexion.cerrar(pst);
+            Conexion.cerrar(con);
+        }
         return "";
     }
 

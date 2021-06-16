@@ -8,22 +8,28 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+        
+        
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registro de usuarios</title>
     </head>
     <body>
      <center>
-        <h1>nuevo usuario</h1>
+        <h1 class="display-1" class="text-success">nuevo usuario</h1>
     
-        <div>
+        <div class="w-50 p-3" class="ratio ratio-16x9" class="shadow p-3 mb-5 bg-body rounded">
         <form action="http://localhost:8080/SistemaPREP/RegistrarUsarios" method="post">
-            <input type="text" placeholder="Nombre"><br><br>
-            <input type="text" placeholder="Apellidos"><br><br>
-            <input type="text" placeholder="Correo Electronico"><br><br>
-            <input type="text" placeholder="Contraseña"><br><br>
-            <input type="text" placeholder="Domicilio"><br><br>
-            <input type="text" placeholder="Edad"><br><br>
-            <input type="submit" value="registrar">
+            <input type="text" placeholder="Nombre" name="nombre" class="form-control" id="formGroupExampleInput"><br><br>
+            <input type="text" placeholder="Apellidos" name="apellidos" class="form-control" id="formGroupExampleInput"><br><br>
+            <input type="text" placeholder="Correo Electronico" name="email"  class="form-control" id="formGroupExampleInput"><br><br>
+            <input type="text" placeholder="Contraseña" name="psw"  class="form-control" id="formGroupExampleInput"><br><br>
+            <input type="text" placeholder="Domicilio" name="domi"  class="form-control" id="formGroupExampleInput"><br><br>
+            <input type="text" placeholder="Edad" name="edad"  class="form-control" id="formGroupExampleInput"><br><br>
+            <input type="submit" value="registrar" class="btn btn-outline-success">
         </form>
         </div>
     </center>

@@ -24,12 +24,13 @@
         <input class="form-control" id="formGroupExampleInput" type="password" name="Pswd" required value placeholder="contraseña"><br><br>
         
         <button type="submit" class="btn btn-outline-success" name="btE">Iniciar Sesion</button>
-        <hr>¿No estas registrado? <a href="" class="link-success">pulsa aqui</a></hr><br>
+        <hr>¿No estas registrado? <a href="http://localhost:8080/SistemaPREP/Registro.jsp" class="link-success">pulsa aqui</a></hr><br>
         <hr>¿perdiste tu contraseña? <a href="" class="link-success">pulsa aqui</a></hr>
         </center>
-    </center>
+    
         </form>
-            
+        </div>
+         </center>    
             
         
     </body>
