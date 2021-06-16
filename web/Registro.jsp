@@ -10,7 +10,7 @@
     <head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-
+         <script src="https://kit.fontawesome.com/38fbf1aa31.js" crossorigin="anonymous"></script>
         
         
         
@@ -29,6 +29,9 @@
             <input type="text" placeholder="Contraseña" name="psw"  class="form-control" id="formGroupExampleInput"><br><br>
             <input type="text" placeholder="Domicilio" name="domi"  class="form-control" id="formGroupExampleInput"><br><br>
             <input type="text" placeholder="Edad" name="edad"  class="form-control" id="formGroupExampleInput"><br><br>
+            tipo usuario:<br><br>
+            root <input type="radio" name="TipoUs" value="1" class="form-check-input"><br><br>
+            normal <input type="radio" name="TipoUs" value="2" class="form-check-input"><br><br>
             <input type="submit" value="registrar" class="btn btn-outline-success">
         </form>
         </div>
