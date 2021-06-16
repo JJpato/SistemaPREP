@@ -77,6 +77,7 @@ public class RegistrarUsarios extends HttpServlet {
         String edad = request.getParameter("edad");
         String correo = request.getParameter("email");
         String contrasena = request.getParameter("psw");
+        String tipoUs = request.getParameter("TipoUs");
         
         UsuariosDao us = new UsuariosDao();
         us.crearUsu(nombre, apellido, correo, contrasena , edad);

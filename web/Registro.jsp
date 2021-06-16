@@ -27,7 +27,6 @@
             <input type="text" placeholder="Apellidos" name="apellidos" class="form-control" id="formGroupExampleInput"><br><br>
             <input type="text" placeholder="Correo Electronico" name="email"  class="form-control" id="formGroupExampleInput"><br><br>
             <input type="text" placeholder="Contraseña" name="psw"  class="form-control" id="formGroupExampleInput"><br><br>
-            <input type="text" placeholder="Domicilio" name="domi"  class="form-control" id="formGroupExampleInput"><br><br>
             <input type="text" placeholder="Edad" name="edad"  class="form-control" id="formGroupExampleInput"><br><br>
             tipo usuario:<br><br>
             root <input type="radio" name="TipoUs" value="1" class="form-check-input"><br><br>

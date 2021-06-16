@@ -2,24 +2,24 @@
 package Modelo;
 
 public class Usuario {
-    int idUsu;
+    int tipous;
     String nombre;
     String Apellido;
     String edad;
     String Usu;
+    String pwsd;
 
     public Usuario(String Usu, String pwsd) {
         this.Usu = Usu;
         this.pwsd = pwsd;
     }
-    String pwsd;
 
-    public int getIdUsu() {
-        return idUsu;
+    public int getTipous() {
+        return tipous;
     }
 
-    public void setIdUsu(int idUsu) {
-        this.idUsu = idUsu;
+    public void setTipous(int tipous) {
+        this.tipous = tipous;
     }
 
     public String getNombre() {
@@ -61,6 +61,8 @@ public class Usuario {
     public void setPwsd(String pwsd) {
         this.pwsd = pwsd;
     }
+    
 
+    
     
 }
