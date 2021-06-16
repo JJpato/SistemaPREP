@@ -4,7 +4,7 @@
 <section id="partidos">
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12"> 
                 <div class="card">
                     <div class="card-header">
                         <h4>Listado de Partidos 
@@ -63,11 +63,18 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="id">Id</label>
-                        <input type="text" class="form-control" name="id" required>
+                        <input type="text" class="form-control" name="id" placeholder="Ingrese Id" required>
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" required>
+                        <input type="text" class="form-control" name="nombre" placeholder="Ingrese nombre de partido" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="alc">Alcance</label><br>
+                        <select class="form-control bg-light" name="alcance" id="alc">
+                            <option>Nacional</option>
+                            <option>Local</option>
+                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">
