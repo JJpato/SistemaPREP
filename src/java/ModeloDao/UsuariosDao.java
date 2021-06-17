@@ -49,11 +49,7 @@ public class UsuariosDao implements CRUD{
         }
         catch(Exception e){
         }
-        finally{
-            Conexion.cerrar(pst);
-            Conexion.cerrar(con);
-            Conexion.cerrar(rs);
-        }
+        
         return no;
     }
     

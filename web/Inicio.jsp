@@ -1,4 +1,5 @@
 
+<%@page import="Modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,7 +11,15 @@
         
     </head>
     <body>
+        <%
+        HttpSession sesion=request.getSession();
+        Usuario us=(Usuario)sesion.getAttribute("usuario");
+        if(us==null){
+        request.getRequestDispatcher("Login.jsp").forward(request, response);
+        }
+        else{
         
+        %>
         <!--Cabecero -->
         <jsp:include page="/WEB-INF/paginas/Comunes/cabecero.jsp"/>
 
@@ -30,9 +39,10 @@
                                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/Controlador?pagina=Votos">
                                         <h4><i class="fas fa-box-tissue"></i>Votos</h4>
                                     </a>
-                                        <a class="nav-item nav-link" href="http://localhost:8080/SistemaPREP/CerrarSesion">
+                                        <a class="nav-item nav-link" href="Login.jsp">
                                             <h4><i class="fas fa-sign-out-alt" title="cerrar sesion"></i> </h4> 
                                         </a>
+             
                                 </div>
                             </div>
                         </nav>
@@ -40,7 +50,10 @@
                 </div>
             </div>
         </section>
+                  <% System.out.print(us.getNombre());  %>                      
+                                        
+                                        
 
-
+<%}%>
     </body>
 </html>

@@ -66,7 +66,6 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        
         String user;
               String ps;
               String a;
@@ -77,15 +76,19 @@ public class Login extends HttpServlet {
                 a=UDAO.log(user, ps);
                 out.print(a);
                 if(UDAO.access){
-               Usuario usu = new Usuario(user,ps);
-                 HttpSession session = request.getSession();
+                Usuario usu = new Usuario(user,ps);
+                HttpSession session = request.getSession();
+                session.setAttribute("usuario", usu);
+                request.getRequestDispatcher("Inicio.jsp").forward(request, response);
+                 /*HttpSession session = request.getSession();
                  session.setAttribute("usuario", usu);   
-                 request.getRequestDispatcher("http://localhost:8080/SistemaPREP/Inicio.jsp").forward(request, response);
+                 request.getRequestDispatcher("http://localhost:8080/SistemaPREP/Inicio.jsp").forward(request, response);*/
+                    //response.sendRedirect("Inicio.jsp");
                 }
-                else{response.sendRedirect("http://localhost:8080/SistemaPREP/Login.jsp");
-                    
+                else{response.sendRedirect("http://localhost:8080/SistemaPREP/Login.jsp");                    
                 }
            }
+                
     }   
     @Override
     public String getServletInfo() {
