@@ -10,6 +10,9 @@
         
     </head>
     <body>
+        <%
+        HttpSession session1 = request.getSession();
+        %>
         <!--Cabecero -->
         <jsp:include page="/WEB-INF/paginas/Comunes/cabecero.jsp"/>
 
@@ -25,10 +28,13 @@
                             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                                 <div class="navbar-nav">
                                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/Controlador?pagina=Partidos"><h4>
-                                            <i class="fas fa-book-open"></i></i>Registrar Partido</h4></a>
+                                            <i class="fas fa-book-open"></i>Registrar Partido</h4></a>
                                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/Controlador?pagina=Votos">
                                         <h4><i class="fas fa-box-tissue"></i>Votos</h4>
                                     </a>
+                                        <a class="nav-item nav-link" href="http://localhost:8080/SistemaPREP/CerrarSesion">
+                                            <h4><i class="fas fa-sign-out-alt" title="cerrar sesion"></i> </h4> 
+                                        </a>
                                 </div>
                             </div>
                         </nav>

@@ -28,9 +28,14 @@
             <input type="text" placeholder="Correo Electronico" name="email"  class="form-control" id="formGroupExampleInput"><br><br>
             <input type="text" placeholder="Contraseña" name="psw"  class="form-control" id="formGroupExampleInput"><br><br>
             <input type="text" placeholder="Edad" name="edad"  class="form-control" id="formGroupExampleInput"><br><br>
-            tipo usuario:<br><br>
-            root <input type="radio" name="TipoUs" value="1" class="form-check-input"><br><br>
-            normal <input type="radio" name="TipoUs" value="2" class="form-check-input"><br><br>
+            <div align="left">
+            Tipo Usuario<br><br>
+            administrador           <input type="radio" name="TipoUs" value="1" class="form-check-input"><br><br>
+            Capturista         <input type="radio" name="TipoUs" value="2" class="form-check-input"><br>
+            </div>
+            
+                
+            <br><br>
             <input type="submit" value="registrar" class="btn btn-outline-success">
         </form>
         </div>
