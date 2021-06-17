@@ -10,9 +10,7 @@
         
     </head>
     <body>
-        <%
-        HttpSession session1 = request.getSession();
-        %>
+        
         <!--Cabecero -->
         <jsp:include page="/WEB-INF/paginas/Comunes/cabecero.jsp"/>
 

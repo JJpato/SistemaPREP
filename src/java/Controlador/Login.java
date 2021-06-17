@@ -34,7 +34,7 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
         }
-            //rd.forward(request, response);
+            //
             
         }
     
@@ -70,22 +70,22 @@ public class Login extends HttpServlet {
         String user;
               String ps;
               String a;
-           // if(request.getParameter("btE")!= null){
+           if(request.getParameter("btE")!= null){
                 user= request.getParameter("Usu");
                 ps= request.getParameter("Pswd");
                 UsuariosDao UDAO = new UsuariosDao();
                 a=UDAO.log(user, ps);
                 out.print(a);
                 if(UDAO.access){
-             // response.sendRedirect("pruebaL.html");
                Usuario usu = new Usuario(user,ps);
                  HttpSession session = request.getSession();
                  session.setAttribute("usuario", usu);   
-                 request.getRequestDispatcher("Inicio.jsp").forward(request, response);
+                 request.getRequestDispatcher("http://localhost:8080/SistemaPREP/Inicio.jsp").forward(request, response);
                 }
                 else{response.sendRedirect("http://localhost:8080/SistemaPREP/Login.jsp");
                     
-                }          
+                }
+           }
     }   
     @Override
     public String getServletInfo() {

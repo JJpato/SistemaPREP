@@ -18,7 +18,7 @@
     <body>
     <center>
         <div class="w-50 p-3" class="ratio ratio-16x9" class="shadow p-3 mb-5 bg-body rounded">
-        <form action="http://localhost:8080/SistemaPREP/Login" method="post">
+            <form action="http://localhost:8080/SistemaPREP/Login"  method="post">
             <hr><center><h1 class="display-1" class="text-success">Sistema PREP</h1><hr>
         <input class="form-control" id="formGroupExampleInput" type="text" name="Usu" required value placeholder="Usuario"><br><br>
         <input class="form-control" id="formGroupExampleInput" type="password" name="Pswd" required value placeholder="contraseña"><br><br>
