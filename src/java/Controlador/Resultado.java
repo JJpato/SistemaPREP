@@ -80,7 +80,32 @@ public class Resultado extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        PrintWriter out = response.getWriter();
+        
+        Connection con=null;
+        Statement stmt=null;
+        ResultSet rs=null;
+        
+                String url = "jdbc:mysql://localhost:3306/votaciones";
+                try {
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            Logger.getLogger(Resultado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+
+        try {
+            con = DriverManager.getConnection(url);
+        } catch (SQLException ex) {
+            Logger.getLogger(Resultado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+                  if ( con != null ) 
+                   out.println("Se ha establecido una conexión a la base de datos " +  
+                                       "\n " + url );
+                
     }
 
     /**
