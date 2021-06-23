@@ -87,6 +87,8 @@ public class Resultado extends HttpServlet {
         ResultSet rs=null;
         
                 String url = "jdbc:mysql://localhost:3306/votaciones";
+                String usuario = "root";
+                String contrasena = "";
                 try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
@@ -96,7 +98,7 @@ public class Resultado extends HttpServlet {
 
 
         try {
-            con = DriverManager.getConnection(url);
+            con = DriverManager.getConnection(url,usuario,contrasena);
         } catch (SQLException ex) {
             Logger.getLogger(Resultado.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -105,7 +107,18 @@ public class Resultado extends HttpServlet {
                   if ( con != null ) 
                    out.println("Se ha establecido una conexión a la base de datos " +  
                                        "\n " + url );
-                
+            try {
+            stmt = con.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(Resultado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            rs =  stmt.executeQuery("SELECT P.nombre_partido, V.votos FROM partidos P JOIN votos V ;");
+        } catch (SQLException ex) {
+            Logger.getLogger(Resultado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                  
     }
 
     /**
@@ -117,5 +130,31 @@ public class Resultado extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+    private static class Resultset {
+
+        public Resultset() {
+        }
+
+        private boolean next() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        private int getInt(int i) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        private String getString(int i) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        private int getInt() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+
+        private String getString() {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
+    }
 
 }
