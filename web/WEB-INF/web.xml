@@ -8,6 +8,10 @@
         <servlet-name>CerrarSesion</servlet-name>
         <servlet-class>Controlador.CerrarSesion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Cerrar</servlet-name>
+        <servlet-class>Controlador.Cerrar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrarUsarios</servlet-name>
         <url-pattern>/RegistrarUsarios</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>CerrarSesion</servlet-name>
         <url-pattern>/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Cerrar</servlet-name>
+        <url-pattern>/Cerrar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -77,10 +77,17 @@ public class RegistrarUsarios extends HttpServlet {
         String edad = request.getParameter("edad");
         String correo = request.getParameter("email");
         String contrasena = request.getParameter("psw");
+        String tel=request.getParameter("telefono");
         String tipoUs = request.getParameter("TipoUs");
+        String estado = request.getParameter("estado");
+        String municipio = request.getParameter("municipio");
+        String calleNum = request.getParameter("calleNumero");
+        String CoP = request.getParameter("cp");
+        int ubi = Integer.parseInt(request.getParameter("ubicacion"));
+        //int idu=Integer.parseInt(request.getParameter("id"));
         
         UsuariosDao us = new UsuariosDao();
-        us.crearUsu(nombre, apellido, correo, contrasena , edad);
+        us.crearUsu(nombre, apellido, correo, contrasena, edad, tel,tipoUs,estado,municipio,calleNum,CoP,ubi);
         response.sendRedirect("Login.jsp");
     }
 

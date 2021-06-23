@@ -30,7 +30,7 @@ public class UsuariosDao implements CRUD{
         PreparedStatement pst=null;
         ResultSet rs = null;
         String usu=null;
-        String Consulta="Select * from usuarios where usuario = '"+U+"' and paswordd = '"+P+"'";
+        String Consulta="Select * from usuarios where correo = '"+U+"' and password = '"+P+"'";
         String no=null;
         
         try{
@@ -38,7 +38,7 @@ public class UsuariosDao implements CRUD{
             pst=con.prepareStatement(Consulta);
             rs=pst.executeQuery();
             while(rs.next()){
-                usu=rs.getString(5);
+                usu=rs.getString(4);
                 pswd=rs.getString(6);
                 if(usu.equalsIgnoreCase(U)&& pswd.equalsIgnoreCase(P)){
                 access=true;
@@ -53,14 +53,18 @@ public class UsuariosDao implements CRUD{
         return no;
     }
     
-    public String crearUsu(String nombre,String Apellido,String correo,String Contra,String edad){
+    public String crearUsu(String nombre,String Apellido,String correo,String Contra,String edad, String tel,String nivel,String estado,String muni,String calleN, String cp, int ubicacion){
         Connection con = null;
         PreparedStatement pst=null;
-        String Insertar="Insert into usuarios values (13,'"+nombre+"','"+Apellido+"','"+edad+"','"+correo+"','"+Contra+"' )";
+        PreparedStatement pst2=null;
+        String Insertar="Insert into usuarios (nombre,apellido,correo,estatus,password,edad,nivel,telefono,ubicacion) values('"+nombre+"','"+Apellido+"','"+correo+"',0,'"+Contra+"','"+edad+"','"+nivel+"','"+tel+"',"+ubicacion+")";
+        String Insertar2="Insert into direccion values ('"+ubicacion+"','"+estado+"','"+muni+"','"+calleN+"','"+cp+"')";
         try{
         con = Conexion.getConexion();
-        pst=con.prepareStatement(Insertar);
+        pst=con.prepareStatement(Insertar2);
         pst.executeUpdate();
+        pst2=con.prepareStatement(Insertar);
+        pst2.executeUpdate();
         }
         catch(Exception e){
         }

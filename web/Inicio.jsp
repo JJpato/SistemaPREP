@@ -18,7 +18,7 @@
         request.getRequestDispatcher("Login.jsp").forward(request, response);
         }
         else{
-        
+        String nom=us.getNombre();
         %>
         <!--Cabecero -->
         <jsp:include page="/WEB-INF/paginas/Comunes/cabecero.jsp"/>
@@ -39,7 +39,7 @@
                                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/Controlador?pagina=Votos">
                                         <h4><i class="fas fa-box-tissue"></i>Votos</h4>
                                     </a>
-                                        <a class="nav-item nav-link" href="Login.jsp">
+                                        <a class="nav-item nav-link" href="http://localhost:8080/SistemaPREP/Cerrar">
                                             <h4><i class="fas fa-sign-out-alt" title="cerrar sesion"></i> </h4> 
                                         </a>
              
@@ -49,11 +49,7 @@
                     </div>
                 </div>
             </div>
-        </section>
-                  <% System.out.print(us.getNombre());  %>                      
-                                        
-                                        
-
+        </section>                    
 <%}%>
     </body>
 </html>

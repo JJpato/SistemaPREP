@@ -23,15 +23,22 @@
     
         <div class="w-50 p-3" class="ratio ratio-16x9" class="shadow p-3 mb-5 bg-body rounded">
         <form action="http://localhost:8080/SistemaPREP/RegistrarUsarios" method="post">
+            
             <input type="text" placeholder="Nombre" name="nombre" class="form-control" id="formGroupExampleInput"><br><br>
             <input type="text" placeholder="Apellidos" name="apellidos" class="form-control" id="formGroupExampleInput"><br><br>
+            <input type="text" placeholder="edad" name="edad" class="form-control" id="formGroupExampleInput"><br><br>
             <input type="text" placeholder="Correo Electronico" name="email"  class="form-control" id="formGroupExampleInput"><br><br>
-            <input type="text" placeholder="Contraseña" name="psw"  class="form-control" id="formGroupExampleInput"><br><br>
-            <input type="text" placeholder="Edad" name="edad"  class="form-control" id="formGroupExampleInput"><br><br>
+            <input type="text" placeholder="Contraseña" name="psw"  class="form-control" id="formGroupExampleInput" type1="password"><br><br>
+            <input type="text" placeholder="telefono" name="telefono"  class="form-control" id="formGroupExampleInput"><br><br>
+            <input type="text" placeholder="num ubicacion" name="ubicacion"  class="form-control" id="formGroupExampleInput"><br><br>
+            <input type="text" placeholder="estado" name="estado"  class="form-control" id="formGroupExampleInput"><br><br>
+            <input type="text" placeholder="municipio" name="municipio"  class="form-control" id="formGroupExampleInput"><br><br>
+            <input type="text" placeholder="calle numero" name="calleNumero"  class="form-control" id="formGroupExampleInput"><br><br>
+            <input type="text" placeholder="Codigo postal" name="cp"  class="form-control" id="formGroupExampleInput"><br><br>
             <div align="left">
             Tipo Usuario<br><br>
-            administrador           <input type="radio" name="TipoUs" value="1" class="form-check-input"><br><br>
-            Capturista         <input type="radio" name="TipoUs" value="2" class="form-check-input"><br>
+            administrador           <input type="radio" name="TipoUs" value="1" class="form-check-input" required value><br><br>
+            Capturista         <input type="radio" name="TipoUs" value="2" class="form-check-input" required value><br>
             </div>
             
                 
