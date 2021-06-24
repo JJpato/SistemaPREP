@@ -1,4 +1,5 @@
-/*
+
+        /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
+
 
 /**
  *
@@ -105,19 +107,53 @@ public class Resultado extends HttpServlet {
         
         
                   if ( con != null ) 
-                   out.println("Se ha establecido una conexión a la base de datos " +  
-                                       "\n " + url );
-            try {
+                      
+                        try {
             stmt = con.createStatement();
         } catch (SQLException ex) {
             Logger.getLogger(Resultado.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         try {
-            rs =  stmt.executeQuery("SELECT P.nombre_partido, V.votos FROM partidos P JOIN votos V ;");
+            rs = stmt.executeQuery("SELECT p.nombre_partido, sum(v.votos) FROM Votos v JOIN partidos p on p.id_partido = v.fk_id_partido  GROUP by v.fk_id_partido;");
         } catch (SQLException ex) {
             Logger.getLogger(Resultado.class.getName()).log(Level.SEVERE, null, ex);
         }
+        out.print("<h1>"+"VOTOS"+"</h1>");
+            
+            out.print("<table border='1'>");
+            out.print("<tr>");
+            out.print("<th>"+"PARTIDOS"+"</th>");
+            out.print("<th>"+"VOTOS"+"</th>");
+            out.print("</tr>");
+        try {
+            while(rs.next()){
+                String Pr=rs.getString(1);
+                int Vt=rs.getInt(2);
+                out.print("<tr>");//---------
+                
+                out.print("<td>");
+                out.print(""+ Pr);
+                out.print("</td>");
+                
+                out.print("<td>");
+                out.print(Vt);
+                out.print("</td>");
+                
+                
+                out.print("</tr>");
+                
+            }
+            out.print("</table>");
+        } catch (SQLException ex) {
+            Logger.getLogger(Resultado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+          
+                   
+          
+
+        
+        
+        
                   
     }
 
