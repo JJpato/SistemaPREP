@@ -25,14 +25,13 @@ public class UsuariosDao implements CRUD{
     //private static final String Consulta="Select *from usuarios where ";
     public boolean access;
     
-    public String log(String U, String P){
+    public boolean log(String U, String P){
         Connection con = null;
         PreparedStatement pst=null;
         ResultSet rs = null;
         String usu=null;
         String Consulta="Select * from usuarios where correo = '"+U+"' and password = '"+P+"'";
-        String no=null;
-        
+        String no=null;       
         try{
             con = Conexion.getConexion();
             pst=con.prepareStatement(Consulta);
@@ -50,8 +49,49 @@ public class UsuariosDao implements CRUD{
         catch(Exception e){
         }
         
-        return no;
+        return access;
     }
+    
+    public String DNivel(String Usu){
+        String Nivel=null;
+    try{
+        Connection con = null;
+        PreparedStatement pst=null;
+        ResultSet rs = null;
+            String Consulta1="Select * from usuarios where correo = '"+Usu+"'";
+            con = Conexion.getConexion();
+            pst=con.prepareStatement(Consulta1);
+            rs=pst.executeQuery();
+            while(rs.next()){
+                Nivel=rs.getString(8);   
+            }
+        }
+        catch(Exception e){
+        }
+    return Nivel;
+    }
+    
+   public int Dstatus(String Usu){
+       int Status=0;
+    try{
+        Connection con = null;
+        PreparedStatement pst=null;
+        ResultSet rs = null;
+            String Consulta2="Select * from usuarios where correo = '"+Usu+"'";
+            con = Conexion.getConexion();
+            pst=con.prepareStatement(Consulta2);
+            rs=pst.executeQuery();
+            while(rs.next()){
+                Status=rs.getInt(5);   
+            }
+        }
+        catch(Exception e){
+        }
+    return Status;
+    }
+    
+    
+    
     
     public String crearUsu(String nombre,String Apellido,String correo,String Contra,String edad, String tel,String nivel,String estado,String muni,String calleN, String cp, int ubicacion){
         Connection con = null;
