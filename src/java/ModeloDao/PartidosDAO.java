@@ -14,6 +14,11 @@ import java.util.List;
 public class PartidosDAO implements CRUD<Partidos> {
 
     private static final String SQL_SELECT = "SELECT * FROM partidos";
+    
+    private static final String SQL_SELECT_local = "SELECT * FROM partidos where alcance = 'Local'";
+    private static final String SQL_SELECT_federal = "SELECT * FROM partidos where alcance = 'Federal'";
+    private static final String SQL_SELECT_municipal = "SELECT * FROM partidos where alcance = 'Municipal'";
+    
     private static final String SQL_SELECT_BY_NC = "SELECT * FROM partidos WHERE id_partido = ?";
     private static final String SQL_INSERT = "INSERT INTO partidos VALUES (?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE partidos SET id_partido = ? , nombre_partido = ?, alcance = ?"

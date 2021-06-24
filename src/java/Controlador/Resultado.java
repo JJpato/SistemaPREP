@@ -68,7 +68,7 @@ public class Resultado extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        doPost(request, response);
     }
 
     /**
@@ -151,14 +151,7 @@ public class Resultado extends HttpServlet {
         } catch (SQLException ex) {
             Logger.getLogger(Resultado.class.getName()).log(Level.SEVERE, null, ex);
         }
-          
-                   
-          
-
-        
-        
-        
-                  
+                    
     }
 
     /**
