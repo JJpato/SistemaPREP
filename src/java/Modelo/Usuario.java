@@ -8,6 +8,7 @@ public class Usuario {
     String edad;
     String Usu;
     String pwsd;
+    int estatus;
 
     public Usuario(String Usu, String pwsd) {
         this.Usu = Usu;
@@ -61,8 +62,15 @@ public class Usuario {
     public void setPwsd(String pwsd) {
         this.pwsd = pwsd;
     }
-    
 
-    
+    public int getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(int estatus) {
+        this.estatus = estatus;
+    }
+
+   
     
 }

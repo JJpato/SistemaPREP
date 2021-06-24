@@ -1,4 +1,3 @@
-
 <%@page import="Modelo.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -39,10 +38,15 @@
                                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/Controlador?pagina=Votos">
                                         <h4><i class="fas fa-box-tissue"></i>Votos</h4>
                                     </a>
+                                        <a class="nav-item nav-link">
+                                            <h4><i class="fas fa-address-book"></i></h4>
+                                        </a>
+                                        
+                                        
+                                        
                                         <a class="nav-item nav-link" href="http://localhost:8080/SistemaPREP/Cerrar">
                                             <h4><i class="fas fa-sign-out-alt" title="cerrar sesion"></i> </h4> 
                                         </a>
-             
                                 </div>
                             </div>
                         </nav>

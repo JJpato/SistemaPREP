@@ -68,30 +68,62 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        String user;
-              String ps;
+              String user=request.getParameter("Usu");
+              String ps=request.getParameter("Pswd");
               String a;
+              int Nivel;
+              UsuariosDao UDAO = new UsuariosDao();
+              int status;
+               Nivel=Integer.parseInt(UDAO.DNivel(user));
+               status=UDAO.Dstatus(user);
            if(request.getParameter("btE")!= null){
-                user= request.getParameter("Usu");
-                ps= request.getParameter("Pswd");
-                UsuariosDao UDAO = new UsuariosDao();
-                a=UDAO.log(user, ps);
-                out.print(a);
-                if(UDAO.access){
-                Usuario usu = new Usuario(user,ps);
-                HttpSession session = request.getSession();
-                session.setAttribute("usuario", usu);
-                request.getRequestDispatcher("Inicio.jsp").forward(request, response);
-                 /*HttpSession session = request.getSession();
-                 session.setAttribute("usuario", usu);   
-                 request.getRequestDispatcher("http://localhost:8080/SistemaPREP/Inicio.jsp").forward(request, response);*/
-                    //response.sendRedirect("Inicio.jsp");
+                if(UDAO.log(user, ps)){
+                    status=UDAO.Dstatus(user);
+                   if(status==0){
+                       response.sendRedirect("Estatus.jsp");
+                   }
+                   else if(status==1){
+                    if(Nivel==1){
+                    Usuario usu = new Usuario(user,ps);
+                    HttpSession session = request.getSession();
+                    session.setAttribute("usuario", usu);
+                    request.getRequestDispatcher("Inicio.jsp").forward(request, response);
+                    }
+                    else if(Nivel==2){
+                    Usuario usu = new Usuario(user,ps);
+                    HttpSession session = request.getSession();
+                    session.setAttribute("usuario", usu);
+                    request.getRequestDispatcher("Inicio.jsp").forward(request, response);
+                        //response.sendRedirect("http://localhost:8080/SistemaPREP/reenvio");
+                    }
+                   }
                 }
                 else{response.sendRedirect("http://localhost:8080/SistemaPREP/Login.jsp");                    
                 }
-           }
                 
-    }   
+//                if(UDAO.Dstatus(user)==0){
+//                    response.sendRedirect("Estatus.jsp");
+//                }
+//                else if(UDAO.Dstatus(user)==1){
+//                    out.print(UDAO.DNivel(user));
+//                    
+//                    if(Nivel==1){
+//                    response.sendRedirect("InicioAdmin.jsp");
+//                        out.print(UDAO.DNivel(user));
+//                    }
+//                    else if(Nivel==2){
+//                        out.print("hola2");
+//                    //response.sendRedirect("Inicio.jsp");
+//                    }
+//                }
+               
+//               out.print(UDAO.DNivel(user));
+//               out.print(UDAO.log(user, ps));
+           }
+                         
+    }
+
+    
     @Override
     public String getServletInfo() {
         return "Short description";
