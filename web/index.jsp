@@ -1,1 +1,1 @@
-<meta http-equiv="refresh" content="0; url=${pageContext.request.contextPath}/ControladorV">
+<meta http-equiv="refresh" content="0; url=${pageContext.request.contextPath}/Controlador">

@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-3">
                 <button type="submit" class="btn btn-success btn-block">
-                    <i class="fas fa-check"></i> Guardar Partido
+                    <i class="fas fa-check"></i> Guardar
                 </button>
             </div>
         </div>

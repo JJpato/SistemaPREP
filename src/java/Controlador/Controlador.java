@@ -8,7 +8,9 @@ package Controlador;
 import ModeloDao.PartidosDAO;
 import Modelo.Partidos;
 import Modelo.Usuario;
+import Modelo.Votos;
 import ModeloDao.UsuariosDao;
+import ModeloDao.VotosDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -79,7 +81,8 @@ public class Controlador extends HttpServlet {
                     response.sendRedirect("Inicio.jsp");
             }
         } else {
-            response.sendRedirect("Inicio.jsp");
+            //response.sendRedirect("Inicio.jsp");
+            votos(request, response);
         }
     }
 
@@ -187,7 +190,7 @@ public class Controlador extends HttpServlet {
         String nc = request.getParameter("nc");
         String nombre = request.getParameter("nombre");
         String alcance = request.getParameter("alcance");
-        
+
         Partidos partido = new Partidos(Integer.parseInt(nc), nombre, alcance);
 
         PartidosDAO dao = new PartidosDAO();
@@ -213,16 +216,62 @@ public class Controlador extends HttpServlet {
 
         listarPartidos(request, response);
     }
+
     protected void votos(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession sesion = request.getSession();
-        PartidosDAO dao = new PartidosDAO();
+        String accion = request.getParameter("accion");
+        if (accion != null) {
+            switch (accion) {
+                case "insertar":
+                    insertarVotos(request, response);
+                    break;
+                default:
+                    listarVotos(request, response);
+            }
+        } else {
+            listarVotos(request, response);
+        }
+    }
 
-        List<Partidos> partidos = dao.listar();
+    protected void listarVotos(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
+        PartidosDAO daopartido = new PartidosDAO();
+
+        List<Partidos> partidos = daopartido.listar();
         sesion.setAttribute("partidos", partidos);
 
-        response.sendRedirect("Votos.jsp");
+        VotosDAO daovotos = new VotosDAO();
+
+        List<Votos> votos = daovotos.listar();
+        sesion.setAttribute("votos", votos);
+
+        response.sendRedirect("RegistrarVotos.jsp");
     }
+
+    private void insertarVotos(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int numcasilla = Integer.parseInt(request.getParameter("numcasilla"));
+        String tipoCasilla = request.getParameter("tipocasilla");
+        String entidad = request.getParameter("entidad");
+        String ditrito = request.getParameter("distrito");
+        int seccional = Integer.parseInt(request.getParameter("seccional"));
+        String[] todosVotos = request.getParameterValues("todosvotos");
+        String[] idpartido = request.getParameterValues("idpartido");
+        
+        VotosDAO daovotos = new VotosDAO();
+        
+        for(int i=0; i<todosVotos.length; i++){
+            Votos voto = new Votos(numcasilla, tipoCasilla, entidad, ditrito, seccional, 
+                    Integer.parseInt(todosVotos[i]), Integer.parseInt(idpartido[i]));
+            daovotos.insertar(voto);
+        }
+
+        //redirigimos
+        listarVotos(request, response);
+    }
+
     /**
      * Returns a short description of the servlet.
      *

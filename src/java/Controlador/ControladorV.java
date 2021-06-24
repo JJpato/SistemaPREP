@@ -80,12 +80,12 @@ public class ControladorV extends HttpServlet {
         int numeroVotos = Integer.parseInt(request.getParameter("votos"));
         
         VotosDAO dao = new VotosDAO();
-        Votos voto = new Votos(id,numeroVotos);
+        //Votos voto = new Votos(id,numeroVotos);
        HttpSession session = request.getSession();
 
         String pagina = request.getParameter("pagina");
 
-        dao.insertarV(voto);
+        //dao.insertarV(voto);
         response.sendRedirect("RegistrarVotos.jsp");
 
         
