@@ -16,9 +16,9 @@ import java.util.List;
 public class VotosDAO implements CRUD<Votos> {
 
     private static final String SQL_SELECT = "SELECT * FROM votos";
-    private static final String SQL_INSERT = "INSERT INTO votos(num_casilla, tipo_casilla, entidad, distrito, seccional, votos, fk_id_partido) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String SQL_INSERT = "INSERT INTO votos(num_casilla, tipo_casilla, entidad, distrito, seccional, votos, fk_id_partido, alcance_votos) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE votos SET id_votos = ? , num_casilla = ?, tipo_casilla = ?"
-            + ", entidad=?, distrito=?, seccional=?=?, votos=?, fo_id_partido=? WHERE id_votos=?";
+            + ", entidad=?, distrito=?, seccional=?=?, votos=?, fk_id_partido=?, alcance_votos=? WHERE id_votos=?";
     private static final String SQL_DELETE = "DELETE FROM votos WHERE id_votos = ?";
 
     @Override
@@ -37,7 +37,7 @@ public class VotosDAO implements CRUD<Votos> {
 
             while (rs.next()) {
                 voto = new Votos(rs.getInt(1), rs.getInt(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8));
+                        rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7), rs.getInt(8), rs.getString(9));
                 votos.add(voto);
             }
         } catch (SQLException ex) {
@@ -49,7 +49,7 @@ public class VotosDAO implements CRUD<Votos> {
         }
         return votos;
     }
-    
+
     public List Resulta() {
         Connection con = null;
         PreparedStatement stmt = null;
@@ -64,7 +64,7 @@ public class VotosDAO implements CRUD<Votos> {
             Resultados ress = null;
 
             while (rs.next()) {
-               ress  = new Resultados(rs.getString(1),rs.getInt(2));
+                ress = new Resultados(rs.getString(1), rs.getInt(2));
                 resultado.add(ress);
             }
         } catch (SQLException ex) {
@@ -92,7 +92,8 @@ public class VotosDAO implements CRUD<Votos> {
             stmt.setInt(5, voto.getSeccional());
             stmt.setInt(6, voto.getVotos());
             stmt.setInt(7, voto.getIdPartido());
-
+            stmt.setString(8, voto.getAlcance());
+            
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -125,6 +126,7 @@ public class VotosDAO implements CRUD<Votos> {
             stmt.setInt(7, voto.getVotos());
             stmt.setInt(8, voto.getIdPartido());
             stmt.setInt(9, voto.getIdVotos());
+            stmt.setString(10, voto.getAlcance());
             rows = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -160,4 +162,3 @@ public class VotosDAO implements CRUD<Votos> {
     }
 
 }
-

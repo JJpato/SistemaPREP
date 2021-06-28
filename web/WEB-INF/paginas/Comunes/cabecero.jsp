@@ -1,5 +1,5 @@
 <!--Cabecero -->
-<header id="main-header" class="py-2 bg-secondary text-white">
+<header id="main-header"  style="background-color:rgb(199, 21, 133);" class="py-2 text-white">
     <div class="container">            
         <div class="row">
             <div class="col-md-6">

@@ -32,8 +32,10 @@
     </head>
     <body>
         <!--Cabecero -->
-        <jsp:include page="/WEB-INF/paginas/Comunes/cabeceroVotos.jsp"/>
-
+        <jsp:include page="/WEB-INF/paginas/Comunes/cabecero.jsp"/>
+        <!--Menu -->
+        <jsp:include page="/menu.jsp"/>
+        
         <form action="${pageContext.request.contextPath}/ControladorV?accion=modificar" method="GET" class="was-validated">
 
             <section id="details">
@@ -45,8 +47,16 @@
                                     <h4>
                                         Registar Votos
                                         <a href="#" class="btn btn-block btn-success" 
-                                           data-toggle="modal" data-target="#agregarVotosModal">
-                                            <i class="fas fa-plus"></i> Agregar
+                                           data-toggle="modal" data-target="#agregarFederalesModal">
+                                            <i class="fas fa-plus"></i> Agregar Federal
+                                        </a>
+                                        <a href="#" class="btn btn-block btn-success" 
+                                           data-toggle="modal" data-target="#agregarLocalesModal">
+                                            <i class="fas fa-plus"></i> Agregar Local
+                                        </a>
+                                        <a href="#" class="btn btn-block btn-success" 
+                                           data-toggle="modal" data-target="#agregarMunicipalModal">
+                                            <i class="fas fa-plus"></i> Agregar Municipal
                                         </a>
                                     </h4>
                                 </div>
@@ -55,13 +65,14 @@
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>#</th>
-                                                <th>numeroCasilla</th>
-                                                <th>tipoCasilla</th> 
-                                                <th>entidad</th> 
-                                                <th>distrito</th> 
-                                                <th>seccional</th> 
-                                                <th>votos</th> 
-                                                <th>idPartido</th> 
+                                                <th>NumeroCasilla</th>
+                                                <th>TipoCasilla</th> 
+                                                <th>Entidad</th> 
+                                                <th>Distrito</th> 
+                                                <th>Seccional</th> 
+                                                <th>Votos</th> 
+                                                <th>Partido</th> 
+                                                <th>Alcance</th> 
                                             </tr>
                                         </thead>
 
@@ -77,6 +88,7 @@
                                                     <td>${votos.getSeccional()}</td> 
                                                     <td>${votos.getVotos()}</td> 
                                                     <td>${votos.getIdPartido()}</td> 
+                                                    <td>${votos.getAlcance()}</td> 
                                                 </tr>
                                             </c:forEach>
                                         </tbody>
@@ -93,12 +105,12 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-        <!-- Modal agregar Partido-->
-        <div class="modal fade" id="agregarVotosModal">
+        <!-- Modal agregar Partido Federal-->
+        <div class="modal fade" id="agregarFederalesModal">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header bg-secondary text-white">
-                        <h5 class="modal-title">Agregar Votos</h5> 
+                        <h5 class="modal-title">Votos Federales</h5> 
                         <button class="close" data-dismiss="modal">
                             <span>&times;</span>
                         </button>
@@ -133,31 +145,173 @@
                             </div>
                             <div class="form-group">
                                 <label>Seccional</label>
-                                <input type="number" class="form-control" name="seccional" placeholder="Ingrese seccional" required>
+                                <input type="number" class="form-control" name="seccional" min="1" pattern="^[0-9]+" placeholder="Ingrese seccional" required>
                             </div>
 
                             <div class="container-fluid">
                                 <div class="form-group">
                                     <h3>Votos</h3>
-                                    <!--Iteramos cada elemento de la lista -->
-                                    <c:forEach var="partidos" items="${partidos}">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label>Id partido</label>
-                                                <input type="number" class="form-control" name="idpartido" value="${partidos.getIdPartido()}" required>
-                                            </div>
-                                            <div class="col-md-4 ml-auto">
-                                                ${partidos.getNombrePartido()}
-                                                <input type="number" class="form-control" name="todosvotos" value="0" placeholder="Ingrese votos" required>      
-                                            </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select class="form-control bg-light" name="nombrepartido" id="selecttipocasilla" required>
+                                                 <option value="" selected disabled hidden>Seleccione partido</option>
+                                                <c:forEach var="partidos" items="${federales}">
+                                                    <option>${partidos.getNombrePartido()}</option>
+                                                </c:forEach>
+                                            </select>   
                                         </div>
-                                    </c:forEach>
+                                        <div class="col-md-4 ml-auto">
+                                            <input type="number" class="form-control" name="numvotos" value="0" min="0" pattern="^[0-9]+" placeholder="Ingrese votos" required><br>      
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btm-primary bg-primary text-white" type="submit">Guardar</button>
+                            <button class="btn btm-primary bg-primary text-white" name="boton" value="Federal" type="submit">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal agregar Partido Local-->
+        <div class="modal fade" id="agregarLocalesModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-secondary text-white">
+                        <h5 class="modal-title">Votos Locales</h5> 
+                        <button class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+
+                    <form action="${pageContext.request.contextPath}/Controlador?pagina=Votos&accion=insertar" method="POST" class="was-validated">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="numcasilla">Numero de casilla</label>
+                                <input type="number" class="form-control" name="numcasilla" placeholder="Ingrese numero de casilla" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="selecttipocasilla">Tipo de casilla</label><br>
+                                <select class="form-control bg-light" name="tipocasilla" id="selecttipocasilla">
+                                    <option>Basica</option>
+                                    <option>Contigua</option>
+                                    <option>Extraordinaria</option>
+                                    <option>Otras</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Entidad</label>
+                                <select class="form-control bg-light" name="entidad" id="selecttipocasilla">
+                                    <option>Jalisco</option>
+                                </select>                            
+                            </div>
+                            <div class="form-group">
+                                <label>Distrito</label>
+                                <select class="form-control bg-light" name="distrito" id="selecttipocasilla">
+                                    <option>Tonala</option>
+                                </select>                            
+                            </div>
+                            <div class="form-group">
+                                <label>Seccional</label>
+                                <input type="number" class="form-control" min="1" pattern="^[0-9]+" name="seccional" placeholder="Ingrese seccional" required>
+                            </div>
+
+                            <div class="container-fluid">
+                                <div class="form-group">
+                                    <h3>Votos</h3>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select class="form-control bg-light" name="nombrepartido" id="selecttipocasilla" required>
+                                                 <option value="" selected disabled hidden>Seleccione partido</option>
+                                                <c:forEach var="partidos" items="${partidos}">
+                                                    <option>${partidos.getNombrePartido()}</option>
+                                                </c:forEach>
+                                            </select>   
+                                        </div>
+                                        <div class="col-md-4 ml-auto">
+                                            <input type="number" class="form-control" name="numvotos" value="0" min="0" pattern="^[0-9]+" placeholder="Ingrese votos" required><br>      
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btm-primary bg-primary text-white" name="boton" value="Local" type="submit">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal agregar Partido Municipal-->
+        <div class="modal fade" id="agregarMunicipalModal">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header bg-secondary text-white">
+                        <h5 class="modal-title">Votos Municipales</h5> 
+                        <button class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+
+                    <form action="${pageContext.request.contextPath}/Controlador?pagina=Votos&accion=insertar" method="POST" class="was-validated">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="numcasilla">Numero de casilla</label>
+                                <input type="number" class="form-control" name="numcasilla" placeholder="Ingrese numero de casilla" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="selecttipocasilla">Tipo de casilla</label><br>
+                                <select class="form-control bg-light" name="tipocasilla" id="selecttipocasilla">
+                                    <option>Basica</option>
+                                    <option>Contigua</option>
+                                    <option>Extraordinaria</option>
+                                    <option>Otras</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Entidad</label>
+                                <select class="form-control bg-light" name="entidad" id="selecttipocasilla">
+                                    <option>Jalisco</option>
+                                </select>                            
+                            </div>
+                            <div class="form-group">
+                                <label>Distrito</label>
+                                <select class="form-control bg-light" name="distrito" id="selecttipocasilla">
+                                    <option>Tonala</option>
+                                </select>                            
+                            </div>
+                            <div class="form-group">
+                                <label>Seccional</label>
+                                <input type="number" class="form-control" min="1" pattern="^[0-9]+" name="seccional" placeholder="Ingrese seccional" required>
+                            </div>
+
+                            <div class="container-fluid">
+                                <div class="form-group">
+                                    <h3>Votos</h3>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <select class="form-control bg-light" name="nombrepartido" id="selecttipocasilla" required>
+                                                 <option value="" selected disabled hidden>Seleccione partido</option>
+                                                <c:forEach var="partidos" items="${partidos}">
+                                                    <option>${partidos.getNombrePartido()}</option>
+                                                </c:forEach>
+                                            </select>   
+                                        </div>
+                                        <div class="col-md-4 ml-auto">
+                                            <input type="number" class="form-control" name="numvotos" value="0" min="0" pattern="^[0-9]+" placeholder="Ingrese votos" required><br>      
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btm-primary bg-primary text-white" name="boton" value="Municipal" type="submit">Guardar</button>
                         </div>
                     </form>
                 </div>

@@ -81,8 +81,7 @@ public class Controlador extends HttpServlet {
                     response.sendRedirect("Inicio.jsp");
             }
         } else {
-            //response.sendRedirect("Inicio.jsp");
-            votos(request, response);
+            response.sendRedirect("Inicio.jsp");
         }
     }
 
@@ -238,8 +237,12 @@ public class Controlador extends HttpServlet {
         HttpSession sesion = request.getSession();
         PartidosDAO daopartido = new PartidosDAO();
 
-        List<Partidos> partidos = daopartido.listar();
-        sesion.setAttribute("partidos", partidos);
+        List<Partidos> todosPartidos = daopartido.listar();
+
+        List<Partidos> partidosNacionales = daopartido.listarNacionales();
+
+        sesion.setAttribute("partidos", todosPartidos);
+        sesion.setAttribute("federales", partidosNacionales);
 
         VotosDAO daovotos = new VotosDAO();
 
@@ -257,16 +260,19 @@ public class Controlador extends HttpServlet {
         String entidad = request.getParameter("entidad");
         String ditrito = request.getParameter("distrito");
         int seccional = Integer.parseInt(request.getParameter("seccional"));
-        String[] todosVotos = request.getParameterValues("todosvotos");
-        String[] idpartido = request.getParameterValues("idpartido");
+        String numvotos = request.getParameter("numvotos");
+        String nombrepartido = request.getParameter("nombrepartido");
+        String alcance = request.getParameter("boton");
         
+        int idpartido = 0;
         VotosDAO daovotos = new VotosDAO();
-        
-        for(int i=0; i<todosVotos.length; i++){
-            Votos voto = new Votos(numcasilla, tipoCasilla, entidad, ditrito, seccional, 
-                    Integer.parseInt(todosVotos[i]), Integer.parseInt(idpartido[i]));
-            daovotos.insertar(voto);
-        }
+        PartidosDAO daopartido = new PartidosDAO();
+
+        idpartido = daopartido.encontrarPorNombre(nombrepartido);
+
+        Votos voto = new Votos(numcasilla, tipoCasilla, entidad, ditrito, seccional,
+                Integer.parseInt(numvotos), idpartido, alcance);
+        daovotos.insertar(voto);
 
         //redirigimos
         listarVotos(request, response);

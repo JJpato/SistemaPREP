@@ -35,9 +35,7 @@ public class Login extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
         }
 
-            
-        }
-    
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -53,7 +51,6 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
 
-        
     }
 
     /**
@@ -68,39 +65,36 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-              String user=request.getParameter("Usu");
-              String ps=request.getParameter("Pswd");
-              String a;
-              int Nivel;
-              UsuariosDao UDAO = new UsuariosDao();
-              int status;
-               Nivel=Integer.parseInt(UDAO.DNivel(user));
-               status=UDAO.Dstatus(user);
-           if(request.getParameter("btE")!= null){
-                if(UDAO.log(user, ps)){
-                    status=UDAO.Dstatus(user);
-                   if(status==0){
-                       response.sendRedirect("Estatus.jsp");
-                   }
-                   else if(status==1){
-                    if(Nivel==1){
-                    Usuario usu = new Usuario(user,ps);
-                    HttpSession session = request.getSession();
-                    session.setAttribute("usuario", usu);
-                    request.getRequestDispatcher("Inicio.jsp").forward(request, response);
+        String user = request.getParameter("Usu");
+        String ps = request.getParameter("Pswd");
+        String a;
+        int Nivel;
+        UsuariosDao UDAO = new UsuariosDao();
+        int status;
+        Nivel = Integer.parseInt(UDAO.DNivel(user));
+        status = UDAO.Dstatus(user);
+        if (request.getParameter("btE") != null) {
+            if (UDAO.log(user, ps)) {
+                status = UDAO.Dstatus(user);
+                if (status == 0) {
+                    response.sendRedirect("Estatus.jsp");
+                } else if (status == 1) {
+                    if (Nivel == 1) {
+                        Usuario usu = new Usuario(user, ps);
+                        HttpSession session = request.getSession();
+                        session.setAttribute("usuario", usu);
+                        response.sendRedirect("Inicio.jsp");
+                    } else if (Nivel == 2) {
+                        Usuario usu = new Usuario(user, ps);
+                        HttpSession session = request.getSession();
+                        session.setAttribute("usuario", usu);
+                        response.sendRedirect("Inicio.jsp");
                     }
-                    else if(Nivel==2){
-                    Usuario usu = new Usuario(user,ps);
-                    HttpSession session = request.getSession();
-                    session.setAttribute("usuario", usu);
-                    request.getRequestDispatcher("Inicio.jsp").forward(request, response);
-                        //response.sendRedirect("http://localhost:8080/SistemaPREP/reenvio");
-                    }
-                   }
                 }
-                else{response.sendRedirect("http://localhost:8080/SistemaPREP/Login.jsp");                    
-                }
-                
+            } else {
+                response.sendRedirect("Login.jsp");
+            }
+
 //                if(UDAO.Dstatus(user)==0){
 //                    response.sendRedirect("Estatus.jsp");
 //                }
@@ -116,14 +110,12 @@ public class Login extends HttpServlet {
 //                    //response.sendRedirect("Inicio.jsp");
 //                    }
 //                }
-               
 //               out.print(UDAO.DNivel(user));
 //               out.print(UDAO.log(user, ps));
-           }
-                         
+        }
+
     }
 
-    
     @Override
     public String getServletInfo() {
         return "Short description";

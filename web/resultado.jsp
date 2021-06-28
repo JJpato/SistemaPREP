@@ -16,6 +16,10 @@
         <title>Resultado</title>
     </head>
     <body>
+        <!--Cabecero -->
+        <jsp:include page="/WEB-INF/paginas/Comunes/cabecero.jsp"/>
+        <jsp:include page="/menu.jsp"/>
+        
         <section id="partidos">
             <div class="container">
                 <div class="row">
@@ -34,12 +38,12 @@
                                 </thead>
                                 <tbody>
                                     <!--Iteramos cada elemento de la lista -->
-                                <c:forEach var="Consul" items="${Consul}">
-                                    <tr>
-                                        <td>${Consul.getPartido()}</td>
-                                        <td>${Consul.getVotos()}</td> 
-                                    </tr>
-                                </c:forEach>
+                                    <c:forEach var="Consul" items="${Consul}">
+                                        <tr>
+                                            <td>${Consul.getPartido()}</td>
+                                            <td>${Consul.getVotos()}</td> 
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>

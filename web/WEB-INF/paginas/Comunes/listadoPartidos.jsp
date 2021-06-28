@@ -65,7 +65,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="id">Id</label>
-                        <input type="text" class="form-control" name="id" placeholder="Ingrese Id" required>
+                        <input type="number" class="form-control" name="id" placeholder="Ingrese Id" required>
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre</label>

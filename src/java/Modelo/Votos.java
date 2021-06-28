@@ -10,8 +10,9 @@ public class Votos {
     private int seccional;
     private int votos;
     private int idPartido;
+    private String alcance;
 
-    public Votos(int numeroCasilla, String tipoCasilla, String entidad, String distrito, int seccional, int votos, int idPartido) {
+    public Votos(int numeroCasilla, String tipoCasilla, String entidad, String distrito, int seccional, int votos, int idPartido, String alcance) {
         this.numeroCasilla = numeroCasilla;
         this.tipoCasilla = tipoCasilla;
         this.entidad = entidad;
@@ -19,9 +20,10 @@ public class Votos {
         this.seccional = seccional;
         this.votos = votos;
         this.idPartido = idPartido;
+        this.alcance = alcance;
     }
 
-    public Votos(int idVotos, int numeroCasilla, String tipoCasilla, String entidad, String distrito, int seccional, int votos, int idPartido) {
+    public Votos(int idVotos, int numeroCasilla, String tipoCasilla, String entidad, String distrito, int seccional, int votos, int idPartido, String alcance) {
         this.idVotos = idVotos;
         this.numeroCasilla = numeroCasilla;
         this.tipoCasilla = tipoCasilla;
@@ -30,6 +32,7 @@ public class Votos {
         this.seccional = seccional;
         this.votos = votos;
         this.idPartido = idPartido;
+        this.alcance = alcance;
     }
 
     public int getIdVotos() {
@@ -95,5 +98,14 @@ public class Votos {
     public void setIdPartido(int idPartido) {
         this.idPartido = idPartido;
     }
+
+    public String getAlcance() {
+        return alcance;
+    }
+
+    public void setAlcance(String alcance) {
+        this.alcance = alcance;
+    }
+    
 
 }

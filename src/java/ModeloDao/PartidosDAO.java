@@ -14,11 +14,10 @@ import java.util.List;
 public class PartidosDAO implements CRUD<Partidos> {
 
     private static final String SQL_SELECT = "SELECT * FROM partidos";
-    
-    private static final String SQL_SELECT_local = "SELECT * FROM partidos where alcance = 'Local'";
-    private static final String SQL_SELECT_federal = "SELECT * FROM partidos where alcance = 'Federal'";
-    private static final String SQL_SELECT_municipal = "SELECT * FROM partidos where alcance = 'Municipal'";
-    
+
+    private static final String SQL_SELECT_NACIONAL = "SELECT * FROM partidos where alcance = 'Nacional'";
+    private static final String SQL_SELECT_BY_NAME = "SELECT id_partido FROM partidos WHERE nombre_partido = ?";
+
     private static final String SQL_SELECT_BY_NC = "SELECT * FROM partidos WHERE id_partido = ?";
     private static final String SQL_INSERT = "INSERT INTO partidos VALUES (?, ?, ?)";
     private static final String SQL_UPDATE = "UPDATE partidos SET id_partido = ? , nombre_partido = ?, alcance = ?"
@@ -51,6 +50,56 @@ public class PartidosDAO implements CRUD<Partidos> {
             Conexion.cerrar(con);
         }
         return partidos;
+    }
+
+    public List listarNacionales() {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Partidos> nacionales = new ArrayList<>();
+
+        try {
+            con = Conexion.getConexion();
+            stmt = con.prepareStatement(SQL_SELECT_NACIONAL);
+            rs = stmt.executeQuery();
+            Partidos partido = null;
+
+            while (rs.next()) {
+                partido = new Partidos(rs.getInt(1), rs.getString(2), rs.getString(3));
+                nacionales.add(partido);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.cerrar(rs);
+            Conexion.cerrar(stmt);
+            Conexion.cerrar(con);
+        }
+        return nacionales;
+    }
+
+    public int encontrarPorNombre(String nombre) {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int id=0;
+        try {
+            con = Conexion.getConexion();
+            stmt = con.prepareStatement(SQL_SELECT_BY_NAME);
+            stmt.setString(1, nombre);
+            rs = stmt.executeQuery();
+
+            rs.absolute(1);
+            id = rs.getInt(1);
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.cerrar(rs);
+            Conexion.cerrar(stmt);
+            Conexion.cerrar(con);
+        }
+        return id;
     }
 
     @Override
