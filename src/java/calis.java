@@ -6,7 +6,9 @@
 
 import Controlador.EnviarCorreo;
 import Modelo.Partidos;
+import Modelo.Resultados;
 import ModeloDao.PartidosDAO;
+import ModeloDao.VotosDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -36,7 +38,7 @@ public class calis extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        /*
         //Declarar variable EnviarCorreo
         EnviarCorreo correo = new EnviarCorreo();
         //declarar el mensaje a enviar
@@ -44,6 +46,15 @@ public class calis extends HttpServlet {
         //Enviar correo, recibe como parametros, el destino, encabezado y el mensaje en si. 
         //Devuelve el estado del mensaje (Enviado o fallido), pero no funciona muy bien
         String estado = correo.Enviar("josejuangallardocabrera@gmail.com", "CalisEnvios", mensaje);
+        */
+        HttpSession sesion = request.getSession();
+        
+        VotosDAO daovotos = new VotosDAO();
+        
+        List<Resultados> resultado = daovotos.Resulta();
+
+        
+        
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -53,7 +64,7 @@ public class calis extends HttpServlet {
             out.println("<title>Servlet calis</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>" + estado + "</h1>");
+            out.println("<h1>" + resultado.get(0).getPartido() + "</h1>");
             out.println("</body>");
             out.println("</html>");
             

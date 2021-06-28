@@ -6,6 +6,8 @@
  */
 package Controlador;
 
+import Modelo.Resultados;
+import ModeloDao.VotosDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 //import java.sql.Connection;
@@ -21,6 +23,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.*;
+import java.util.List;
+import javax.servlet.http.HttpSession;
 
 
 /**
@@ -69,6 +73,7 @@ public class Resultado extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doPost(request, response);
+        
     }
 
     /**
@@ -83,7 +88,7 @@ public class Resultado extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        
+    /*    
         Connection con=null;
         Statement stmt=null;
         ResultSet rs=null;
@@ -123,7 +128,7 @@ public class Resultado extends HttpServlet {
 "    </head>");
         out.print("<!--Cabecero --> <header id=\"main-header\" class=\"py-2 bg-secondary text-white\"> <div class=\"container\"> <div class=\"row\"> <div class=\"col-md-6\"> <a href=\"Inicio.jsp\" class=\"nav-item nav-link text-white\"> <h1> <i class=\"fas fa-balance-scale\"></i></i> Sistema PREP </h1> </a> </div> </div> </div> </header>");
         out.print("<h1>"+"VOTOS"+"</h1>");
-            
+            out.print("<center>");
             out.print("<table border='1'>");
             out.print("<tr>");
             out.print("<th>"+"PARTIDOS"+"</th>");
@@ -148,10 +153,21 @@ public class Resultado extends HttpServlet {
                 
             }
             out.print("</table>");
+            out.print("</center>");
         } catch (SQLException ex) {
             Logger.getLogger(Resultado.class.getName()).log(Level.SEVERE, null, ex);
         }
-                    
+        */
+        
+        HttpSession sesion = request.getSession();
+        
+        VotosDAO daovotos = new VotosDAO();
+        
+        List<Resultados> resultado = daovotos.Resulta();
+        sesion.setAttribute("Consul", resultado);
+        
+        response.sendRedirect("resultado.jsp");
+        
     }
 
     /**

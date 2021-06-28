@@ -2,6 +2,7 @@ package ModeloDao;
 
 import Interfaces.CRUD;
 import Modelo.Partidos;
+import Modelo.Resultados;
 import Modelo.Usuario;
 import configuracion.Conexion;
 import java.sql.Connection;
@@ -47,6 +48,33 @@ public class VotosDAO implements CRUD<Votos> {
             Conexion.cerrar(con);
         }
         return votos;
+    }
+    
+    public List Resulta() {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Resultados> resultado = new ArrayList<>();
+
+        try {
+            con = Conexion.getConexion();
+            stmt = con.prepareStatement("SELECT p.nombre_partido, sum(v.votos) FROM Votos v JOIN partidos p on p.id_partido = v.fk_id_partido  GROUP by v.fk_id_partido;");
+            rs = stmt.executeQuery();
+            Resultados ress = null;
+
+            while (rs.next()) {
+               ress  = new Resultados(rs.getString(1),rs.getInt(2));
+                resultado.add(ress);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.cerrar(rs);
+            Conexion.cerrar(stmt);
+            Conexion.cerrar(con);
+        }
+        return resultado;
     }
 
     @Override
@@ -132,3 +160,4 @@ public class VotosDAO implements CRUD<Votos> {
     }
 
 }
+
