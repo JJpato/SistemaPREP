@@ -19,31 +19,31 @@
     </head>
     <body>
      <center>
-        <h1 class="display-1" class="text-success">nuevo usuario</h1>
+        <h1 class="display-1" class="text-success">Nuevo usuario</h1>
     
         <div class="w-50 p-3" class="ratio ratio-16x9" class="shadow p-3 mb-5 bg-body rounded">
         <form action="http://localhost:8080/SistemaPREP/RegistrarUsarios" method="post">
             
-            <input type="text" placeholder="Nombre" name="nombre" class="form-control" id="formGroupExampleInput"><br><br>
-            <input type="text" placeholder="Apellidos" name="apellidos" class="form-control" id="formGroupExampleInput"><br><br>
-            <input type="text" placeholder="edad" name="edad" class="form-control" id="formGroupExampleInput"><br><br>
-            <input type="text" placeholder="Correo Electronico" name="email"  class="form-control" id="formGroupExampleInput"><br><br>
-            <input type="text" placeholder="Contraseña" name="psw"  class="form-control" id="formGroupExampleInput" type1="password"><br><br>
-            <input type="text" placeholder="telefono" name="telefono"  class="form-control" id="formGroupExampleInput"><br><br>
-            <input type="text" placeholder="num ubicacion" name="ubicacion"  class="form-control" id="formGroupExampleInput"><br><br>
-            <input type="text" placeholder="estado" name="estado"  class="form-control" id="formGroupExampleInput"><br><br>
-            <input type="text" placeholder="municipio" name="municipio"  class="form-control" id="formGroupExampleInput"><br><br>
-            <input type="text" placeholder="calle numero" name="calleNumero"  class="form-control" id="formGroupExampleInput"><br><br>
-            <input type="text" placeholder="Codigo postal" name="cp"  class="form-control" id="formGroupExampleInput"><br><br>
+            <input type="text" placeholder="Nombre" name="nombre"  class="form-control" id="formGroupExampleInput" required><br><br>
+            <input type="text" placeholder="Apellidos" name="apellidos"  class="form-control" id="formGroupExampleInput" required><br><br>
+            <input type="text" placeholder="Edad" name="edad" class="form-control"  id="formGroupExampleInput" required><br><br>
+            <input type="text" placeholder="Correo Electronico" name="email" pattern="^[a-zA-Z0-9@.!#$%&’*+/=?^_`~-]{8,100}" class="form-control" id="formGroupExampleInput" required><br><br>
+            <input type="password" placeholder="Contraseña" name="psw" pattern="[A-Za-z0-9!?-._]{5,12}" class="form-control" id="formGroupExampleInput" type1="password" required><br><br>
+            <input type="text" placeholder="Telefono" name="telefono"   class="form-control" id="formGroupExampleInput" required><br><br>
+            <input type="text" placeholder="Numero de ubicacion" name="ubicacion"  class="form-control" id="formGroupExampleInput" required><br><br>
+            <input type="text" placeholder="Estado" name="estado"   class="form-control" id="formGroupExampleInput" required><br><br>
+            <input type="text" placeholder="Municipio" name="municipio"  class="form-control" id="formGroupExampleInput"required><br><br>
+            <input type="text" placeholder="Calle y Numero" name="calleNumero"  class="form-control" id="formGroupExampleInput" required><br><br>
+            <input type="text" placeholder="Codigo postal" name="cp" class="form-control" id="formGroupExampleInput" required><br><br>
             <div align="left">
             Tipo Usuario<br><br>
-            administrador           <input type="radio" name="TipoUs" value="1" class="form-check-input" required value><br><br>
-            Capturista         <input type="radio" name="TipoUs" value="2" class="form-check-input" required value><br>
+            - Administrador           <input type="radio" name="TipoUs" value="1" class="form-check-input" required value><br><br>
+            - Capturista         <input type="radio" name="TipoUs" value="2" class="form-check-input" required value><br>
             </div>
             
                 
             <br><br>
-            <input type="submit" value="registrar" class="btn btn-outline-success">
+            <input type="submit" value="Registrar" class="btn btn-outline-success">
         </form>
         </div>
     </center>

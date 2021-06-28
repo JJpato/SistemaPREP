@@ -41,7 +41,7 @@
                                     <a class="nav-item nav-link" href="${pageContext.request.contextPath}/Resultado">
                                         <h4></i>Resultados</h4>
                                     </a>
-                                    <a class="nav-item nav-link" href="http://localhost:8080/SistemaPREP/Cerrar">
+                                    <a class="nav-item nav-link" href="${pageContext.request.contextPath}/Cerrar">
                                         <h4><i class="fas fa-sign-out-alt" title="cerrar sesion"></i> </h4> 
                                     </a>
 

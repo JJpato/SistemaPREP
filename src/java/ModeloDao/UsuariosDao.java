@@ -90,7 +90,31 @@ public class UsuariosDao implements CRUD{
     return Status;
     }
     
-    
+       public String Dcorreo(String M){
+        Connection con = null;
+        PreparedStatement pst=null;
+        ResultSet rs = null;
+        String PS=null;
+        
+        String ConsultaPASSWORD="Select PASSWORD from usuarios where correo = '"+M+"'"; 
+        
+        try{
+                con = Conexion.getConexion();
+                pst=con.prepareStatement(ConsultaPASSWORD);
+                rs=pst.executeQuery();
+
+                while(rs.next()){
+                    PS=rs.getString(1);
+                }
+                
+            }
+        
+        catch(Exception e){
+        }
+        
+        return PS;
+    }
+   
     
     
     public String crearUsu(String nombre,String Apellido,String correo,String Contra,String edad, String tel,String nivel,String estado,String muni,String calleN, String cp, int ubicacion){

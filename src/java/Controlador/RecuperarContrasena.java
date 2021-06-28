@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package Controlador;
 
-import Controlador.EnviarCorreo;
 import Modelo.Partidos;
-import Modelo.Resultados;
 import ModeloDao.PartidosDAO;
-import ModeloDao.VotosDAO;
+import ModeloDao.UsuariosDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -23,8 +22,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author josej
  */
-@WebServlet(urlPatterns = {"/calis"})
-public class calis extends HttpServlet {
+@WebServlet(name = "RecuperarContrasena", urlPatterns = {"/RecuperarContrasena"})
+public class RecuperarContrasena extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,38 +37,20 @@ public class calis extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        /*
-        //Declarar variable EnviarCorreo
-        EnviarCorreo correo = new EnviarCorreo();
-        //declarar el mensaje a enviar
-        String mensaje = "Hola,\n esta es otra prueba";
-        //Enviar correo, recibe como parametros, el destino, encabezado y el mensaje en si. 
-        //Devuelve el estado del mensaje (Enviado o fallido), pero no funciona muy bien
-        String estado = correo.Enviar("josejuangallardocabrera@gmail.com", "CalisEnvios", mensaje);
-        */
-        HttpSession sesion = request.getSession();
-        
-        VotosDAO daovotos = new VotosDAO();
-        
-        List<Resultados> resultado = daovotos.Resulta();
-
-        
-        
-        
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet calis</title>");            
+            out.println("<title>Servlet RecuperarContrasena</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>" + resultado.get(0).getPartido() + "</h1>");
+            out.println("<h1>Servlet RecuperarContrasena at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-            
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -82,7 +63,7 @@ public class calis extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
     }
 
     /**
@@ -96,7 +77,32 @@ public class calis extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        //*********************************************************************************************************************************
+        String mail = request.getParameter("Mail");
+        HttpSession sesion = request.getSession();
+
+        UsuariosDao UDAO = new UsuariosDao();
+        //*********************************************************************************************************************************ParteBorrrable
+        //Declarar variable EnviarCorreo
+        EnviarCorreo correo = new EnviarCorreo();
+        String Contrasena = UDAO.Dcorreo(mail);    // "Select PASSWORD from usuarios where correo = '"+mail+"'";
+        //declarar el mensaje a enviar
+        if (Contrasena != null) {
+            String mensaje = "Hola querido usuario;\n Por medio de este correo te hacemos llegar la contraseña ligada a este correo mediante el sistema prep."
+                    + "\n Esta es una prueba."
+                    + "\n\nTu contraseña es:" + Contrasena;
+
+            // + "Tu contraseña es:"+"SELECT PASSWORD FROM usuarios WHERE correo =\"fshdlcicco@gmail.com\"";
+            String estado = correo.Enviar(mail, "Reenvio de contraseña", mensaje);
+            
+            sesion.setAttribute("mensaje", estado +", revise su bandeja");
+
+            response.sendRedirect("Login.jsp");
+        } else {
+            sesion.setAttribute("mensaje", "No se encontro la contraseña, vuelva a intentar");
+            response.sendRedirect("Login.jsp");
+        }
     }
 
     /**
