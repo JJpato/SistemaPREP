@@ -96,7 +96,7 @@ public class RecuperarContrasena extends HttpServlet {
             // + "Tu contraseña es:"+"SELECT PASSWORD FROM usuarios WHERE correo =\"fshdlcicco@gmail.com\"";
             String estado = correo.Enviar(mail, "Reenvio de contraseña", mensaje);
             
-            sesion.setAttribute("mensaje", estado +", revise su bandeja");
+            sesion.setAttribute("mensaje", estado);
 
             response.sendRedirect("Login.jsp");
         } else {

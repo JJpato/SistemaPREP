@@ -1,5 +1,17 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="Modelo.Usuario"%>
+
+<%
+
+    HttpSession sesion = request.getSession();
+    Usuario us = (Usuario) sesion.getAttribute("usuario");
+    if (us.getTipous().equals("2")) {
+        sesion.setAttribute("mensaje", "No puedes entrar");
+        response.sendRedirect("Login.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>

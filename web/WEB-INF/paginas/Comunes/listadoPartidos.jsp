@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h4>Listado de Partidos 
-                            <a href="#" class="btn btn-block btn-success" 
+                            <a href="#" class="btn btn-block text-white" style="background-color:rgb(199, 21, 133);"
                                data-toggle="modal" data-target="#agregarPartidoModal">
                                 <i class="fas fa-plus"></i> Agregar
                             </a>
@@ -32,7 +32,7 @@
                                     <td>${partidos.getAlcance()}</td> 
                                     <td>
                                         <a href="${pageContext.request.contextPath}/Controlador?pagina=Partidos&accion=editar&nc=${partidos.getIdPartido()}"
-                                           class="btn btn-primary btn-block" >
+                                           class="btn btn-primary btn-block" style="background-color:rgb(184, 134, 11);">
                                             <i class="fas fa-angle-double-right"></i>Editar
                                         </a>
                                         <a href="${pageContext.request.contextPath}/Controlador?pagina=Partidos&accion=eliminar&nc=${partidos.getIdPartido()}" 

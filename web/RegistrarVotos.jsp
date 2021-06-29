@@ -46,15 +46,15 @@
                                 <div class="card-header">
                                     <h4>
                                         Registar Votos
-                                        <a href="#" class="btn btn-block btn-success" 
+                                        <a href="#" class="btn btn-block text-white" style="background-color:rgb(184, 134, 11);"
                                            data-toggle="modal" data-target="#agregarFederalesModal">
                                             <i class="fas fa-plus"></i> Agregar Federal
                                         </a>
-                                        <a href="#" class="btn btn-block btn-success" 
+                                        <a href="#" class="btn btn-block btn-success text-white" style="background-color:rgb(233, 150, 122);"
                                            data-toggle="modal" data-target="#agregarLocalesModal">
                                             <i class="fas fa-plus"></i> Agregar Local
                                         </a>
-                                        <a href="#" class="btn btn-block btn-success" 
+                                        <a href="#" class="btn btn-block btn-success text-white" style="background-color:rgb(169, 169, 169);"
                                            data-toggle="modal" data-target="#agregarMunicipalModal">
                                             <i class="fas fa-plus"></i> Agregar Municipal
                                         </a>
@@ -109,7 +109,7 @@
         <div class="modal fade" id="agregarFederalesModal">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header bg-secondary text-white">
+                    <div class="modal-header text-white" style="background-color:rgb(184, 134, 11);">
                         <h5 class="modal-title">Votos Federales</h5> 
                         <button class="close" data-dismiss="modal">
                             <span>&times;</span>
@@ -180,8 +180,8 @@
         <div class="modal fade" id="agregarLocalesModal">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header bg-secondary text-white">
-                        <h5 class="modal-title">Votos Locales</h5> 
+                    <div class="modal-header text-white" style="background-color:rgb(233, 150, 122);">
+                        <h5 class="modal-title">Votos Locales</h5>  
                         <button class="close" data-dismiss="modal">
                             <span>&times;</span>
                         </button>
