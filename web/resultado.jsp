@@ -25,8 +25,8 @@
                 <div class="row">
                     <div class="col-md-8"> 
                         <div class="card">
-                            <div class="card-header">
-                                <h4>Resultado de Votaciones
+                            <div class="card-header text-white" style="background-color:rgb(184, 134, 11);">
+                                <h4>Resultado de Votaciones           Federal
                                 </h4>
                             </div>
                             <table class="table table-striped">
@@ -34,6 +34,7 @@
                                     <tr>
                                         <th>PARTIDOS</th>
                                         <th>VOTOS</th> 
+                                        <th>ALCANCE</th> 
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,6 +43,85 @@
                                         <tr>
                                             <td>${Consul.getPartido()}</td>
                                             <td>${Consul.getVotos()}</td> 
+                                            <td>${Consul.getAlcance()}</td> 
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <br>
+        <br>
+        <br>
+        
+        
+        <section id="partidoss">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8"> 
+                        <div class="card">
+                            <div class="card-header text-white" style="background-color:rgb(169, 169, 169);">
+                                <h4>Resultado de Votaciones             Municipal
+                                </h4>
+                            </div>
+                            <table class="table table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>PARTIDOS</th>
+                                        <th>VOTOS</th> 
+                                        <th>ALCANCE</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--Iteramos cada elemento de la lista -->
+                                    <c:forEach var="ConsulM" items="${ConsulM}">
+                                        <tr>
+                                            <td>${ConsulM.getPartido()}</td>
+                                            <td>${ConsulM.getVotos()}</td> 
+                                            <td>${ConsulM.getAlcance()}</td> 
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <br>
+        <br>
+        <br>
+        
+        
+        <section id="partidosss">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8"> 
+                        <div class="card">
+                            <div class="card-header text-white" style="background-color:rgb(233, 150, 122);">
+                                <h4>Resultado de Votaciones              Local
+                                </h4>
+                            </div>
+                            <table class="table table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>PARTIDOS</th>
+                                        <th>VOTOS</th> 
+                                        <th>ALCANCE</th> 
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--Iteramos cada elemento de la lista -->
+                                    <c:forEach var="ConsulL" items="${ConsulL}">
+                                        <tr>
+                                            <td>${ConsulL.getPartido()}</td>
+                                            <td>${ConsulL.getVotos()}</td> 
+                                            <td>${ConsulL.getAlcance()}</td> 
                                         </tr>
                                     </c:forEach>
                                 </tbody>

@@ -163,10 +163,24 @@ public class Resultado extends HttpServlet {
         
         VotosDAO daovotos = new VotosDAO();
         
-        List<Resultados> resultado = daovotos.Resulta();
+        List<Resultados> resultado = daovotos.ResultaF();
         sesion.setAttribute("Consul", resultado);
         
+        
+        System.out.println(resultado.get(0).getPartido());
+        List<Resultados> resultadom = daovotos.ResultaM();
+        sesion.setAttribute("ConsulM", resultadom);
+        
+        System.out.println(resultadom.get(0).getPartido());
+        List<Resultados> resultadol = daovotos.ResultaL();
+        sesion.setAttribute("ConsulL", resultadol);
+        
+        System.out.println(resultadol.get(0).getPartido());
+        
         response.sendRedirect("resultado.jsp");
+        
+        
+          
         
     }
 

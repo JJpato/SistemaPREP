@@ -12,9 +12,16 @@ package Modelo;
 public class Resultados {
     String Partido;
     int Votos;
+    String Alcance;
 
     public String getPartido() {
         return Partido;
+    }
+
+    public Resultados(String Partido, int Votos, String Alcance) {
+        this.Partido = Partido;
+        this.Votos = Votos;
+        this.Alcance = Alcance;
     }
 
     public void setPartido(String Partido) {
@@ -29,11 +36,11 @@ public class Resultados {
         this.Votos = Votos;
     }
 
-    public Resultados(String Partido, int Votos) {
-        this.Partido = Partido;
-        this.Votos = Votos;
+    public String getAlcance() {
+        return Alcance;
     }
 
-    
-    
+    public void setAlcance(String Alcance) {
+        this.Alcance = Alcance;
+    }
 }

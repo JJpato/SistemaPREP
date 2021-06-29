@@ -1,7 +1,6 @@
 package ModeloDao;
 
 import Interfaces.CRUD;
-import Modelo.Partidos;
 import Modelo.Resultados;
 import Modelo.Usuario;
 import configuracion.Conexion;
@@ -50,7 +49,7 @@ public class VotosDAO implements CRUD<Votos> {
         return votos;
     }
 
-    public List Resulta() {
+    public List ResultaM() {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -59,12 +58,14 @@ public class VotosDAO implements CRUD<Votos> {
 
         try {
             con = Conexion.getConexion();
-            stmt = con.prepareStatement("SELECT p.nombre_partido, sum(v.votos) FROM Votos v JOIN partidos p on p.id_partido = v.fk_id_partido  GROUP by v.fk_id_partido;");
+            stmt = con.prepareStatement("SELECT p.nombre_partido, sum(v.votos), V.alcance_votos FROM Votos v JOIN partidos p on p.id_partido = v.fk_id_partido \n" +
+"where V.alcance_votos=\"Municipal\"\n" +
+"GROUP by v.fk_id_partido;");
             rs = stmt.executeQuery();
             Resultados ress = null;
 
             while (rs.next()) {
-                ress = new Resultados(rs.getString(1), rs.getInt(2));
+                ress = new Resultados(rs.getString(1), rs.getInt(2), rs.getString(3));
                 resultado.add(ress);
             }
         } catch (SQLException ex) {
@@ -76,7 +77,62 @@ public class VotosDAO implements CRUD<Votos> {
         }
         return resultado;
     }
+    public List ResultaL() {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
 
+        List<Resultados> resultado = new ArrayList<>();
+
+        try {
+            con = Conexion.getConexion();
+            stmt = con.prepareStatement("SELECT p.nombre_partido, sum(v.votos), V.alcance_votos FROM Votos v JOIN partidos p on p.id_partido = v.fk_id_partido \n" +
+"where V.alcance_votos=\"Local\"\n" +
+"GROUP by v.fk_id_partido;");
+            rs = stmt.executeQuery();
+            Resultados ress = null;
+
+            while (rs.next()) {
+                ress = new Resultados(rs.getString(1), rs.getInt(2), rs.getString(3));
+                resultado.add(ress);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.cerrar(rs);
+            Conexion.cerrar(stmt);
+            Conexion.cerrar(con);
+        }
+        return resultado;
+    }    
+    public List ResultaF() {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Resultados> resultado = new ArrayList<>();
+
+        try {
+            con = Conexion.getConexion();
+            stmt = con.prepareStatement("SELECT p.nombre_partido, sum(v.votos), V.alcance_votos FROM Votos v JOIN partidos p on p.id_partido = v.fk_id_partido \n" +
+"where V.alcance_votos=\"Federal\"\n" +
+"GROUP by v.fk_id_partido;");
+            rs = stmt.executeQuery();
+            Resultados ress = null;
+
+            while (rs.next()) {
+                ress = new Resultados (rs.getString(1), rs.getInt(2), rs.getString(3));
+                resultado.add(ress);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.cerrar(rs);
+            Conexion.cerrar(stmt);
+            Conexion.cerrar(con);
+        }
+        return resultado;
+    }
     @Override
     public int insertar(Votos voto) {
         Connection con = null;
