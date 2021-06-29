@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -36,7 +37,7 @@ public class RegistrarUsarios extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegistrarUsarios</title>");            
+            out.println("<title>Servlet RegistrarUsarios</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet RegistrarUsarios at " + request.getContextPath() + "</h1>");
@@ -77,7 +78,7 @@ public class RegistrarUsarios extends HttpServlet {
         String edad = request.getParameter("edad");
         String correo = request.getParameter("email");
         String contrasena = request.getParameter("psw");
-        String tel=request.getParameter("telefono");
+        String tel = request.getParameter("telefono");
         String tipoUs = request.getParameter("TipoUs");
         String estado = request.getParameter("estado");
         String municipio = request.getParameter("municipio");
@@ -85,10 +86,18 @@ public class RegistrarUsarios extends HttpServlet {
         String CoP = request.getParameter("cp");
         int ubi = Integer.parseInt(request.getParameter("ubicacion"));
         //int idu=Integer.parseInt(request.getParameter("id"));
-        
+
         UsuariosDao us = new UsuariosDao();
-        us.crearUsu(nombre, apellido, correo, contrasena, edad, tel,tipoUs,estado,municipio,calleNum,CoP,ubi);
-        response.sendRedirect("Login.jsp");
+        String mess = us.crearUsu(nombre, apellido, correo, contrasena, edad, tel, tipoUs, estado, municipio, calleNum, CoP, ubi);
+        HttpSession sesion = request.getSession();
+
+        if (mess != null) {
+            sesion.setAttribute("mensaje", "Usuario creado exitosamente");
+            response.sendRedirect("Login.jsp");
+        } else {
+            sesion.setAttribute("mensaje", "Error al crear usuario");
+            response.sendRedirect("Login.jsp");
+        }
     }
 
     /**

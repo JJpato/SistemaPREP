@@ -16,17 +16,21 @@
         <title>Login</title>
     </head>
     <body>
+
     <center>
         <div class="w-50 p-3" class="ratio ratio-16x9" class="shadow p-3 mb-5 bg-body rounded">
-            <form action="${pageContext.request.contextPath}/Login"  method="post">
+            <form action="${pageContext.request.contextPath}/Login"  method="post" class="was-validated">
                 <center><h1 class="display-1" class="text-success">Sistema PREP</h1>
-                    <input class="form-control" id="formGroupExampleInput" type="email" name="Usu"  required value placeholder="Usuario"><br><br>
-                    <input class="form-control" id="formGroupExampleInput" type="password" name="Pswd" required value placeholder="contraseña"><br><br>
+                    <br><br>
+                    <input class="form-control form-control-lg" id="formGroupExampleInput" type="email" pattern="^[a-zA-Z0-9@.!#$%&’*+/=?^_`~-]{8,100}" name="Usu" placeholder="Usuario" required><br>
+                    <input class="form-control form-control-lg" id="formGroupExampleInput" type="password" pattern="[A-Za-z0-9!?-._-;@$%&/()=?¡¿]{5,12}" name="Pswd" placeholder="Contraseña" required><br>
 
-                    <button type="submit" class="btn btn-outline-success" name="btE">Iniciar Sesion</button><br>
-                    <a href="${pageContext.request.contextPath}/Registro.jsp" class="link-success"><h1><i class="fas fa-user-plus" title="Crear cuenta"></i></h1></a><br>
-                    <a href="${pageContext.request.contextPath}/RecuperarPassword.jsp" class="link-success"><h1><i class="fas fa-unlock-alt" title="Recuperar contraseña"></i></h1></a>
-
+                    <button type="submit" class="btn bg-success btn-lg text-white" name="btE">Iniciar Sesion</button><br><br>
+                    <div>
+                        <a href="${pageContext.request.contextPath}/Registro.jsp" class="btn btn-outline-success btn-sm"><i class="fas fa-user-plus" title="Crear cuenta"></i>Registrarme</a><br>
+                        <a href="${pageContext.request.contextPath}/RecuperarPassword.jsp" class="btn btn-outline-success btn-sm"><i class="fas fa-unlock-alt" title="Recuperar contraseña"></i>¿Olvidaste tu contraseña?</a><br><br>
+                    </div>
+                    
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         ${mensaje}
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -39,6 +43,7 @@
             </form>
         </div>
     </center>    
+
 
 
 </body>

@@ -67,53 +67,29 @@ public class Login extends HttpServlet {
         PrintWriter out = response.getWriter();
         String user = request.getParameter("Usu");
         String ps = request.getParameter("Pswd");
-        String a;
-        int Nivel;
         UsuariosDao UDAO = new UsuariosDao();
-        int status;
-        Nivel = Integer.parseInt(UDAO.DNivel(user));
-        status = UDAO.Dstatus(user);
-        if (request.getParameter("btE") != null) {
-            if (UDAO.log(user, ps)) {
-                status = UDAO.Dstatus(user);
-                if (status == 0) {
-                    response.sendRedirect("Estatus.jsp");
-                } else if (status == 1) {
-                    if (Nivel == 1) {
-                        Usuario usu = new Usuario(user, ps);
-                        HttpSession session = request.getSession();
-                        session.setAttribute("usuario", usu);
-                        response.sendRedirect("Inicio.jsp");
-                    } else if (Nivel == 2) {
-                        Usuario usu = new Usuario(user, ps);
-                        HttpSession session = request.getSession();
-                        session.setAttribute("usuario", usu);
-                        response.sendRedirect("Inicio.jsp");
-                    }
-                }
-            } else {
+        Usuario usuario;
+        HttpSession sesion = request.getSession();
+        //recuperamos al usuario de la base de datos
+        usuario = UDAO.log(user, ps);
+        
+        //si existe el usuario
+        if(usuario != null){
+            sesion.setAttribute("usuario", usuario);
+            if(usuario.getEstatus() == 1){
+                response.sendRedirect("Inicio.jsp");
+            }
+            else{
+                sesion.setAttribute("mensaje", "Solicitud pendiente");
                 response.sendRedirect("Login.jsp");
             }
-
-//                if(UDAO.Dstatus(user)==0){
-//                    response.sendRedirect("Estatus.jsp");
-//                }
-//                else if(UDAO.Dstatus(user)==1){
-//                    out.print(UDAO.DNivel(user));
-//                    
-//                    if(Nivel==1){
-//                    response.sendRedirect("InicioAdmin.jsp");
-//                        out.print(UDAO.DNivel(user));
-//                    }
-//                    else if(Nivel==2){
-//                        out.print("hola2");
-//                    //response.sendRedirect("Inicio.jsp");
-//                    }
-//                }
-//               out.print(UDAO.DNivel(user));
-//               out.print(UDAO.log(user, ps));
         }
-
+        //si no existe
+        else{
+            sesion.setAttribute("mensaje", "Credenciales incorrectas");
+            response.sendRedirect("Login.jsp");
+        }
+        
     }
 
     @Override

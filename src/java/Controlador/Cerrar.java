@@ -35,7 +35,14 @@ public class Cerrar extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             HttpSession session = request.getSession();
             session.removeAttribute("usuario");
-            request.getRequestDispatcher("Login.jsp").forward(request, response);
+            
+            response.setDateHeader("Expires", 0);
+            response.setHeader("Cache-Control", "no-cache");
+            response.setHeader("Pragma", "no-cache");
+
+            session.invalidate();
+
+            response.sendRedirect("Login.jsp");
         }
     }
 

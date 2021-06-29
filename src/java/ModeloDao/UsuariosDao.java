@@ -23,9 +23,9 @@ public class UsuariosDao implements CRUD{
     private static  String usu=null;
     private static  String pswd=null;
     //private static final String Consulta="Select *from usuarios where ";
-    public boolean access;
+    private Usuario usuario;
     
-    public boolean log(String U, String P){
+    public Usuario log(String U, String P){
         Connection con = null;
         PreparedStatement pst=null;
         ResultSet rs = null;
@@ -37,19 +37,13 @@ public class UsuariosDao implements CRUD{
             pst=con.prepareStatement(Consulta);
             rs=pst.executeQuery();
             while(rs.next()){
-                usu=rs.getString(4);
-                pswd=rs.getString(6);
-                if(usu.equalsIgnoreCase(U)&& pswd.equalsIgnoreCase(P)){
-                access=true;
-                }
-                no=rs.getString(2);
-                
+                usuario = new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getString(9), rs.getInt(10));
             }
         }
         catch(Exception e){
         }
         
-        return access;
+        return usuario;
     }
     
     public String DNivel(String Usu){
@@ -136,7 +130,7 @@ public class UsuariosDao implements CRUD{
             Conexion.cerrar(pst);
             Conexion.cerrar(con);
         }
-        return "";
+        return "Creado";
     }
 
     @Override
