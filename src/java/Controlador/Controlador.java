@@ -77,6 +77,9 @@ public class Controlador extends HttpServlet {
                 case "Votos":
                     votos(request, response);
                     break;
+                case "Usuarios":
+                    listarUsuarios(request, response);
+                    break;
                 default:
                     response.sendRedirect("Inicio.jsp");
             }
@@ -106,6 +109,9 @@ public class Controlador extends HttpServlet {
                     break;
                 case "Votos":
                     votos(request, response);
+                    break;
+                case "Usuarios":
+                    listarUsuarios(request, response);
                     break;
                 default:
                     response.sendRedirect("Inicio.jsp");
@@ -276,6 +282,19 @@ public class Controlador extends HttpServlet {
 
         //redirigimos
         listarVotos(request, response);
+    }
+    
+    protected void listarUsuarios(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
+        UsuariosDao daoUsu = new UsuariosDao();
+
+        List<Usuario> todosUsuarios = daoUsu.listar();
+        System.out.println("-----------------------------------------------------------------------------------------");
+        System.out.println(todosUsuarios.get(0).getNombre());
+        sesion.setAttribute("Usuarios", todosUsuarios);
+
+        response.sendRedirect("Usuarios.jsp");
     }
 
     /**

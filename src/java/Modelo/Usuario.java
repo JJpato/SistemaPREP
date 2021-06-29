@@ -9,7 +9,7 @@ public class Usuario {
     int estatus;
     String pwsd;
     String edad;
-    int tipous;
+    String tipous;
     String telefono;
     int ubicacion;
 
@@ -18,7 +18,7 @@ public class Usuario {
         this.pwsd = pwsd;
     }
 
-    public Usuario(int id, String nombre, String Apellido, String Usu, int estatus, String pwsd, String edad, int tipous, String telefono, int ubicacion) {
+    public Usuario(int id, String nombre, String Apellido, String Usu, int estatus, String pwsd, String edad, String tipous, String telefono, int ubicacion) {
         this.id = id;
         this.nombre = nombre;
         this.Apellido = Apellido;
@@ -30,7 +30,7 @@ public class Usuario {
         this.telefono = telefono;
         this.ubicacion = ubicacion;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -87,11 +87,11 @@ public class Usuario {
         this.edad = edad;
     }
 
-    public int getTipous() {
+    public String getTipous() {
         return tipous;
     }
 
-    public void setTipous(int tipous) {
+    public void setTipous(String tipous) {
         this.tipous = tipous;
     }
 
@@ -110,6 +110,10 @@ public class Usuario {
     public void setUbicacion(int ubicacion) {
         this.ubicacion = ubicacion;
     }
+    
+    
+
+    
     
     
 }

@@ -32,6 +32,10 @@
                             <a class="nav-item nav-link" href="${pageContext.request.contextPath}/Cerrar">
                                 <h4><i class="fas fa-sign-out-alt" title="cerrar sesion"></i> </h4> 
                             </a>
+                                
+                            <a class="nav-item nav-link" href="${pageContext.request.contextPath}/Controlador?pagina=Usuarios">
+                                <h4><i class="fas fa-sign-out-alt" title="Usuarios"></i> </h4> 
+                            </a>    
 
                         </div>
                     </div>

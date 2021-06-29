@@ -10,8 +10,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import Interfaces.CRUD;
+import Modelo.Partidos;
 import Modelo.Usuario;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,7 +40,7 @@ public class UsuariosDao implements CRUD{
             pst=con.prepareStatement(Consulta);
             rs=pst.executeQuery();
             while(rs.next()){
-                usuario = new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getInt(8), rs.getString(9), rs.getInt(10));
+                usuario = new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10));
             }
         }
         catch(Exception e){
@@ -135,8 +138,50 @@ public class UsuariosDao implements CRUD{
 
     @Override
     public List listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        List<Usuario> Usu = new ArrayList<>();
+        
+        try {
+            con = Conexion.getConexion();
+            stmt = con.prepareStatement("select *from usuarios");
+            rs = stmt.executeQuery();
+            Usuario User = null;
+
+            while (rs.next()) {
+                User = new Usuario(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10));
+                Usu.add(User);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.cerrar(rs);
+            Conexion.cerrar(stmt);
+            Conexion.cerrar(con);
+        }
+        return Usu;
     }
+    
+    
+    public void ActuvarUs(int id){
+        Connection con = null;
+        PreparedStatement stmt = null;
+         try {
+            con = Conexion.getConexion();
+            stmt = con.prepareStatement("update usuarios set estatus=1 where id_Usuarios = "+id);
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        } finally {
+            Conexion.cerrar(stmt);
+            Conexion.cerrar(con);
+        }
+    
+    }
+    
+    
 
     @Override
     public Object encontrar(int nc) {
