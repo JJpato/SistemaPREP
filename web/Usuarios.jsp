@@ -50,7 +50,6 @@
                                             <th>apellido</th> 
                                             <th>correo</th> 
                                             <th>estatus</th> 
-                                            <th>pasword</th> 
                                             <th>edad</th> 
                                             <th>nivel</th> 
                                             <th>telefono</th> 
@@ -69,7 +68,6 @@
                                                 <td>${Usuarios.getUsu()}</td> 
                                                 <td>${Usuarios.getEstatus()}</td> 
                                                 <td>${Usuarios.getPwsd()}</td> 
-                                                <td>${Usuarios.getEdad()}</td> 
                                                 <td>${Usuarios.getTipous()}</td> 
                                                 <td>${Usuarios.getTelefono()}</td>
                                                 <td>${Usuarios.getUbicacion()}</td>
